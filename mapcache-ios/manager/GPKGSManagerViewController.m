@@ -51,7 +51,6 @@ const char ConstantKey;
 
 @interface GPKGSManagerViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) GPKGGeoPackageManager *manager;
 @property (nonatomic, strong) NSMutableDictionary *databases;
 @property (nonatomic, strong) NSMutableArray *tableCells;
@@ -98,6 +97,9 @@ const char ConstantKey;
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
     
     if(self.active.modified){
         if(self.retainModifiedForMap){
@@ -225,7 +227,23 @@ const char ConstantKey;
         NSString *expandImage = database.expanded ? [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_UP] : [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_DOWN];
         [dbCell.expandImage setImage:[UIImage imageNamed:expandImage]];
         [dbCell.optionsButton setDatabase:database];
-    }else{
+    } else if ([cellObject isKindOfClass:[GPKGSFeatureTable class]]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_FEATURE_TABLE forIndexPath:indexPath];
+        GPKGSTableCell * tableCell = (GPKGSTableCell *) cell;
+        GPKGSTable * table = (GPKGSTable *) cellObject;
+        [tableCell.tableName setText:table.name];
+        [tableCell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
+        [tableCell.active setTable:table];
+        tableCell.active.on = table.active;
+    } else if ([cellObject isKindOfClass:[GPKGSTileTable class]]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TILE_TABLE forIndexPath:indexPath];
+        GPKGSTableCell * tableCell = (GPKGSTableCell *) cell;
+        GPKGSTable * table = (GPKGSTable *) cellObject;
+        [tableCell.tableName setText:table.name];
+        [tableCell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
+        [tableCell.active setTable:table];
+        tableCell.active.on = table.active;
+    } else if (false){
         cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TABLE forIndexPath:indexPath];
         GPKGSTableCell * tableCell = (GPKGSTableCell *) cell;
         GPKGSTable * table = (GPKGSTable *) cellObject;

@@ -13,6 +13,8 @@ extern NSString * const GPKGS_ANIMATE_SCREEN_TOUCHES;
 extern NSString * const GPKGS_IMPORT_GEOPACKAGE_NOTIFICATION;
 extern NSString * const GPKGS_CELL_DATABASE;
 extern NSString * const GPKGS_CELL_TABLE;
+extern NSString * const GPKGS_CELL_FEATURE_TABLE;
+extern NSString * const GPKGS_CELL_TILE_TABLE;
 extern NSString * const GPKGS_CELL_LINKED_TABLE;
 extern NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_IMAGE;
 extern NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_ACTIVE_IMAGE;

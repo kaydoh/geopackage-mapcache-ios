@@ -15,7 +15,7 @@
 - (void)downloadFileViewController:(GPKGSDownloadFileViewController *)controller downloadedFile:(BOOL)downloaded withError: (NSString *) error;
 @end
 
-@interface GPKGSDownloadFileViewController : UIViewController <GPKGProgress>
+@interface GPKGSDownloadFileViewController : UIViewController <GPKGProgress, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) id <GPKGSDownloadFileDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
@@ -25,5 +25,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UILabel *downloadedLabel;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UITableView *exampleTable;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableOrigin;
 
 @end

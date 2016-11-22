@@ -19,7 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iqS-rQ-Yel" customClass="GPKGSMapView"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iqS-rQ-Yel" customClass="GPKGSMapView">
+                                <frame key="frameInset" width="1000" height="1000"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,7 +54,7 @@
             <objects>
                 <navigationController id="Qds-al-zsU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="GNP-cX-nel"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vkn-Vm-T7H">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vkn-Vm-T7H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,55 +74,19 @@
         <scene sceneID="ppZ-fH-QV9">
             <objects>
                 <tableViewController id="zRZ-qf-hyL" customClass="GPKGSManagerViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RRU-W5-nKj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RRU-W5-nKj">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GeoPackageDatabaseCell" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageDatabaseCell" rowHeight="44" id="ui2-6E-S9B" customClass="GPKGSDatabaseCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ui2-6E-S9B" id="56x-CL-5tz">
-                                    <frame key="frameInset" width="328" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Layer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgH-c7-jqt">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Pdr-Zd-dAb"/>
-                                                <constraint firstAttribute="width" constant="81" id="ejg-qh-OHz"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GeoPackage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp5-oA-igo">
-                                            <frame key="frameInset" minX="8" minY="11" width="146" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="cgH-c7-jqt" secondAttribute="trailing" constant="-8" id="cCZ-nV-Zsz"/>
-                                        <constraint firstItem="cgH-c7-jqt" firstAttribute="top" secondItem="56x-CL-5tz" secondAttribute="topMargin" constant="3" id="kKC-4A-nqW"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="database" destination="sp5-oA-igo" id="QKG-RZ-clg"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageFeatureTableCell" id="YQu-Gc-um6" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQu-Gc-um6" id="aXV-17-reX">
-                                    <frame key="frameInset" width="328" height="43"/>
+                                    <frame key="frameInset" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr4-cI-pC2">
@@ -173,10 +139,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="jFa-li-gr1" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jFa-li-gr1" id="40y-bW-Pqa">
-                                    <frame key="frameInset" width="328" height="43"/>
+                                    <frame key="frameInset" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="k5g-Ia-HQd" customClass="GPKGSActiveTableSwitch">
@@ -238,25 +204,190 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="GeoPackages" image="Manager" id="82G-HH-b2t"/>
                     <navigationItem key="navigationItem" title="GeoPackages" id="MVr-WN-dIh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="OxY-t3-dhM">
-                            <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N6z-fm-I5L">
                             <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="UXM-xC-lNa" kind="show" id="LS3-Rz-Xrp"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeV-8m-ZTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="-235"/>
+            <point key="canvasLocation" x="988" y="-235.23238380809596"/>
+        </scene>
+        <!--Load GeoPackage-->
+        <scene sceneID="UIS-bU-rTd">
+            <objects>
+                <viewController title="Load GeoPackage" id="UXM-xC-lNa" customClass="GPKGSDownloadFileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZxP-FX-8za"/>
+                        <viewControllerLayoutGuide type="bottom" id="zEZ-ng-2vW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jc7-YK-nxJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-OI-q1u">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ua6-I2-cQl">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download From URL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBP-Kk-xnP">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GeoPackage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-sv-eQo">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJi-iu-4vd">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rei-U5-ydU">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="Create A New GeoPackage">
+                                                    <color key="titleColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqo-qY-lf9">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load An Example GeoPackage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nis-Nq-wNn">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QSF-13-uBd">
+                                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="example-gp-cell" textLabel="J96-uX-k3y" detailTextLabel="36p-Ad-qnb" style="IBUITableViewCellStyleSubtitle" id="S8B-9p-hYQ">
+                                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S8B-9p-hYQ" id="puI-TO-dmm">
+                                                            <frame key="frameInset" width="343" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J96-uX-k3y">
+                                                                    <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                                    <color key="textColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="36p-Ad-qnb">
+                                                                    <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="UXM-xC-lNa" id="cz4-jo-gz3"/>
+                                                    <outlet property="delegate" destination="UXM-xC-lNa" id="BB1-LE-p90"/>
+                                                </connections>
+                                            </tableView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F24-Y2-jWm">
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDm-x2-5cB">
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxh-hC-UvG">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Nis-Nq-wNn" firstAttribute="top" secondItem="mqo-qY-lf9" secondAttribute="bottom" constant="4" id="0Nv-yx-B6V"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vxh-hC-UvG" secondAttribute="trailing" constant="16" id="1oc-ko-DLb"/>
+                                            <constraint firstItem="F24-Y2-jWm" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="3dT-QB-Uur"/>
+                                            <constraint firstAttribute="trailing" secondItem="QSF-13-uBd" secondAttribute="trailing" constant="16" id="Adb-Mh-Mb1"/>
+                                            <constraint firstAttribute="trailing" secondItem="mqo-qY-lf9" secondAttribute="trailing" constant="16" id="B6F-wO-35a"/>
+                                            <constraint firstItem="PDm-x2-5cB" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="HHi-mR-XSv"/>
+                                            <constraint firstAttribute="trailing" secondItem="F24-Y2-jWm" secondAttribute="trailing" constant="16" id="Jab-Al-w22"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rei-U5-ydU" secondAttribute="trailing" constant="16" id="Jrw-aW-eeh"/>
+                                            <constraint firstItem="Vxh-hC-UvG" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="Lpn-nh-yCl"/>
+                                            <constraint firstAttribute="trailing" secondItem="y2A-sv-eQo" secondAttribute="trailing" constant="16" id="Ls8-E9-Onv"/>
+                                            <constraint firstItem="JBP-Kk-xnP" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="MMw-aC-GsT"/>
+                                            <constraint firstAttribute="bottom" secondItem="QSF-13-uBd" secondAttribute="bottom" constant="8" id="MoN-ey-pyb"/>
+                                            <constraint firstItem="PDm-x2-5cB" firstAttribute="top" secondItem="MJi-iu-4vd" secondAttribute="bottom" constant="7.5" id="Pau-Qo-FLe"/>
+                                            <constraint firstItem="Rei-U5-ydU" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="QWS-g8-Vcc"/>
+                                            <constraint firstAttribute="trailing" secondItem="JBP-Kk-xnP" secondAttribute="trailing" constant="16" id="RFL-zk-l9D"/>
+                                            <constraint firstAttribute="trailing" secondItem="MJi-iu-4vd" secondAttribute="trailing" constant="16" id="SkE-if-kRd"/>
+                                            <constraint firstItem="y2A-sv-eQo" firstAttribute="top" secondItem="JBP-Kk-xnP" secondAttribute="bottom" constant="8" id="SxZ-kS-DZV"/>
+                                            <constraint firstItem="F24-Y2-jWm" firstAttribute="top" secondItem="y2A-sv-eQo" secondAttribute="bottom" constant="8" id="TMY-xp-boT"/>
+                                            <constraint firstItem="QSF-13-uBd" firstAttribute="top" secondItem="Nis-Nq-wNn" secondAttribute="bottom" constant="8" id="URu-Vs-uXA"/>
+                                            <constraint firstItem="Nis-Nq-wNn" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="Xjw-Ju-xFw"/>
+                                            <constraint firstItem="QSF-13-uBd" firstAttribute="top" secondItem="Ua6-I2-cQl" secondAttribute="top" constant="295" id="Xn1-Xj-GyF"/>
+                                            <constraint firstItem="MJi-iu-4vd" firstAttribute="top" secondItem="F24-Y2-jWm" secondAttribute="bottom" constant="8" id="ZCs-fb-fly"/>
+                                            <constraint firstItem="mqo-qY-lf9" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="a1m-lp-iQD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nis-Nq-wNn" secondAttribute="trailing" constant="16" id="aeA-5X-g8w"/>
+                                            <constraint firstItem="QSF-13-uBd" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="imN-ww-bwi"/>
+                                            <constraint firstItem="mqo-qY-lf9" firstAttribute="top" secondItem="Rei-U5-ydU" secondAttribute="bottom" constant="8" id="lIS-nM-uSE"/>
+                                            <constraint firstItem="JBP-Kk-xnP" firstAttribute="top" secondItem="Ua6-I2-cQl" secondAttribute="top" constant="8" id="ljG-JB-q9a"/>
+                                            <constraint firstAttribute="trailing" secondItem="PDm-x2-5cB" secondAttribute="trailing" constant="16" id="nc2-Jx-UIR"/>
+                                            <constraint firstItem="MJi-iu-4vd" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="nlo-oO-zH5"/>
+                                            <constraint firstItem="y2A-sv-eQo" firstAttribute="leading" secondItem="Ua6-I2-cQl" secondAttribute="leading" constant="16" id="qSf-aV-ZSa"/>
+                                            <constraint firstAttribute="height" constant="554" id="t1W-P1-kGU"/>
+                                            <constraint firstItem="Rei-U5-ydU" firstAttribute="top" secondItem="Vxh-hC-UvG" secondAttribute="bottom" constant="8" id="yUI-UY-8zB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ua6-I2-cQl" firstAttribute="top" secondItem="fdM-OI-q1u" secondAttribute="top" id="72g-0y-ln6"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ua6-I2-cQl" secondAttribute="bottom" id="PAh-bh-2BB"/>
+                                    <constraint firstItem="Ua6-I2-cQl" firstAttribute="leading" secondItem="fdM-OI-q1u" secondAttribute="leading" id="Wy4-3e-Llo"/>
+                                    <constraint firstItem="Ua6-I2-cQl" firstAttribute="width" secondItem="fdM-OI-q1u" secondAttribute="width" id="fc6-8B-mWu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ua6-I2-cQl" secondAttribute="trailing" id="oqw-av-LRb"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zEZ-ng-2vW" firstAttribute="top" secondItem="fdM-OI-q1u" secondAttribute="bottom" id="0JI-tT-foS"/>
+                            <constraint firstItem="fdM-OI-q1u" firstAttribute="leading" secondItem="Jc7-YK-nxJ" secondAttribute="leadingMargin" constant="-16" id="T7z-c9-rDm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fdM-OI-q1u" secondAttribute="trailing" constant="-16" id="pBn-Tn-v6a"/>
+                            <constraint firstItem="fdM-OI-q1u" firstAttribute="top" secondItem="ZxP-FX-8za" secondAttribute="bottom" constant="-64" id="xXW-AT-fuT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentHeight" destination="t1W-P1-kGU" id="nLv-k6-bjA"/>
+                        <outlet property="contentView" destination="Ua6-I2-cQl" id="0BS-ZC-nlL"/>
+                        <outlet property="exampleTable" destination="QSF-13-uBd" id="7CV-aa-cYs"/>
+                        <outlet property="nameTextField" destination="F24-Y2-jWm" id="MgB-Kt-gAH"/>
+                        <outlet property="tableOrigin" destination="Xn1-Xj-GyF" id="d0I-2g-QNg"/>
+                        <outlet property="urlTextField" destination="PDm-x2-5cB" id="mQP-TC-efJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKA-1P-jmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="-235.23238380809596"/>
         </scene>
         <!--GeoPackages-->
         <scene sceneID="9wE-DW-4Nv">
             <objects>
                 <navigationController id="rYf-wW-8Hn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="GeoPackages" image="Manager" id="Hwb-QI-S0S"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9uE-4g-SEP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9uE-4g-SEP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>

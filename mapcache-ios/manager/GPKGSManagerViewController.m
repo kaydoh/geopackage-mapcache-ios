@@ -33,6 +33,8 @@
 #import "GPKGFeatureIndexManager.h"
 #import "GPKGSTableIndex.h"
 #import "GPKGSLinkedTablesViewController.h"
+#import "UIButton+GeoPackage.h"
+#import "UITableViewHeaderFooterView+GeoPackage.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -53,7 +55,8 @@ const char ConstantKey;
 
 @property (nonatomic, strong) GPKGGeoPackageManager *manager;
 @property (nonatomic, strong) NSMutableDictionary *databases;
-@property (nonatomic, strong) NSMutableArray *tableCells;
+@property (nonatomic, strong) NSArray *databaseNames;
+@property (nonatomic, strong) NSMutableDictionary *tableCells;
 @property (nonatomic, strong) GPKGSDatabases *active;
 @property (nonatomic, strong) NSUserDefaults * settings;
 @property (nonatomic) BOOL retainModifiedForMap;
@@ -118,12 +121,83 @@ const char ConstantKey;
     }
 }
 
+/*
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 35;
+}
+ */
+
+/*
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView * cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_DATABASE];
+    
+    GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
+    
+    GPKGSDatabaseCell * dbCell = (GPKGSDatabaseCell *) cell;
+    [dbCell.database setText:database.name];
+    NSString *expandImage = database.expanded ? [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_UP] : [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_DOWN];
+    [dbCell.expandImage setImage:[UIImage imageNamed:expandImage]];
+    [dbCell.optionsButton setDatabase:database];
+    dbCell.geopackage = database;
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    //[singleTapRecognizer setDelegate:self];
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    [dbCell addGestureRecognizer:singleTapRecognizer];
+    
+    UIView *view = [[UIView alloc] initWithFrame:[cell frame]];
+    view.backgroundColor = [UIColor blueColor];
+    [view addSubview:cell];
+    
+    return view;
+}
+ */
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
+    NSString *expando = database.expanded ? @"\u25b2 " : @"\u25bc ";
+    return [expando stringByAppendingString: database.name];
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
+
+    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+        UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *) view;
+        [hfv.textLabel setTextColor:[UIColor colorWithRed:144.0f/256.0f green:201.0f/256.0f blue:216.0f/256.0f alpha:1.0f]];
+        hfv.geoPackage = database;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerClicked:)];
+        [hfv addGestureRecognizer:tap];
+    }
+    
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    addButton.geoPackage = database;
+    [addButton setTintColor:[UIColor colorWithRed:144.0f/256.0f green:201.0f/256.0f blue:216.0f/256.0f alpha:1.0f]];
+    [addButton addTarget:self action:@selector(headerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:addButton];
+    
+    
+    // Place button on far right margin of header
+    addButton.translatesAutoresizingMaskIntoConstraints = NO; // use autolayout constraints instead
+    [addButton.trailingAnchor constraintEqualToAnchor:view.layoutMarginsGuide.trailingAnchor].active = YES;
+    [addButton.bottomAnchor constraintEqualToAnchor:view.layoutMarginsGuide.bottomAnchor].active = YES;
+}
+
+- (void) headerClicked: (UIGestureRecognizer *) sender {
+    UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *)sender.view;
+    [self expandOrCollapseDatabase:hfv.geoPackage];
+}
+
+- (void) headerButtonClick: (UIButton *) button {
+    [self expandOrCollapseDatabase:button.geoPackage];
+}
+
 -(void) update{
-    NSArray * databaseNames = [self.manager databases];
-    self.tableCells = [[NSMutableArray alloc] init];
+    self.databaseNames = [self.manager databases];
+    self.tableCells = [[NSMutableDictionary alloc] init];
     NSDictionary * previousDatabases = self.databases;
     self.databases = [[NSMutableDictionary alloc] init];
-    for(NSString * database in databaseNames){
+    for(NSString * database in self.databaseNames){
         GPKGGeoPackage * geoPackage = nil;
         @try {
             geoPackage = [self.manager open:database];
@@ -137,7 +211,8 @@ const char ConstantKey;
             
             GPKGSDatabase * theDatabase = [[GPKGSDatabase alloc] initWithName:database andExpanded:expanded];
             [self.databases setObject:theDatabase forKey:database];
-            [self.tableCells addObject:theDatabase];
+            NSMutableArray *dbCells = [[NSMutableArray alloc] init];
+            //[self.tableCells addObject:theDatabase];
             NSMutableArray * tables = [[NSMutableArray alloc] init];
             
             GPKGContentsDao * contentsDao = [geoPackage getContentsDao];
@@ -154,9 +229,10 @@ const char ConstantKey;
                 
                 [tables addObject:table];
                 [theDatabase addFeature:table];
-                if(theDatabase.expanded){
-                    [self.tableCells addObject:table];
-                }
+                [dbCells addObject:table];
+                //if(theDatabase.expanded){
+                //    [self.tableCells addObject:table];
+                //}
             }
             
             for(NSString * tableName in [geoPackage getTileTables]){
@@ -168,9 +244,10 @@ const char ConstantKey;
                 
                 [tables addObject:table];
                 [theDatabase addTile:table];
-                if(theDatabase.expanded){
-                    [self.tableCells addObject:table];
-                }
+                [dbCells addObject:table];
+                //if(theDatabase.expanded){
+                //    [self.tableCells addObject:table];
+                //}
             }
             
             for(GPKGSFeatureOverlayTable * table in [self.active featureOverlays:database]){
@@ -180,10 +257,12 @@ const char ConstantKey;
                 
                 [tables addObject:table];
                 [theDatabase addFeatureOverlay:table];
-                if(theDatabase.expanded){
-                    [self.tableCells addObject:table];
-                }
+                [dbCells addObject: table];
+                //if(theDatabase.expanded){
+                //    [self.tableCells addObject:table];
+                //}
             }
+            [self.tableCells setObject:dbCells forKey:database];
             
         }
         @finally {
@@ -207,18 +286,27 @@ const char ConstantKey;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.databaseNames count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.tableCells count];
+    GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
+
+    if (database.expanded) {
+        NSArray * cells = (NSArray *)[self.tableCells objectForKey:[self.databaseNames objectAtIndex:section]];
+        return [cells count];
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = nil;
     
-    NSObject * cellObject = [self.tableCells objectAtIndex:indexPath.row];
+    NSObject * cellObject = [[self.tableCells objectForKey:[self.databaseNames objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    
+    //NSObject * cellObject = [self.tableCells objectAtIndex:indexPath.row];
     if([cellObject isKindOfClass:[GPKGSDatabase class]]){
         cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_DATABASE forIndexPath:indexPath];
         GPKGSDatabaseCell * dbCell = (GPKGSDatabaseCell *) cell;
@@ -301,29 +389,15 @@ const char ConstantKey;
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+/*-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSObject * cellObject = [self.tableCells objectAtIndex:indexPath.row];
     if([cellObject isKindOfClass:[GPKGSDatabase class]]){
         GPKGSDatabase * database = (GPKGSDatabase *) cellObject;
         [self expandOrCollapseDatabase:database atIndexPath:indexPath];
     }
-}
+}*/
 
--(void) expandOrCollapseDatabase: (GPKGSDatabase *) database atIndexPath:(NSIndexPath *)indexPath{
-    
-    if(database.expanded){
-        for(NSInteger i = indexPath.row + 1; i < self.tableCells.count;){
-            NSObject * cellObject = [self.tableCells objectAtIndex:i];
-            if([cellObject isKindOfClass:[GPKGSDatabase class]]){
-                break;
-            }else{
-                [self.tableCells removeObjectAtIndex:i];
-            }
-        }
-    }else{
-        NSInteger i = indexPath.row + 1;
-        [self.tableCells insertObjects:[database getTables] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(i, [database getTableCount])]];
-    }
+-(void) expandOrCollapseDatabase: (GPKGSDatabase *) database {
     database.expanded = !database.expanded;
     if(database.expanded){
         [self addExpandedSetting:database.name];
@@ -331,7 +405,9 @@ const char ConstantKey;
         [self removeExpandedSetting:database.name];
     }
     
-    [self.tableView reloadData];
+    NSUInteger section = [self.databaseNames indexOfObject:database.name];
+    [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
 }
 
 - (IBAction)tableActiveChanged:(GPKGSActiveTableSwitch *)sender {

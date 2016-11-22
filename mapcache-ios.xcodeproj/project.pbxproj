@@ -72,6 +72,8 @@
 		79B230F4F60AF2BE7816B2CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FF687C0F94F922C6DBA093 /* libPods.a */; };
 		84387B2245BCAFF8D68EA9BD /* libPods-mapcache-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A32E67F6B7DA9539729240 /* libPods-mapcache-ios.a */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
+		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
+		F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +217,10 @@
 		9F28A2703C9375B1E3743910 /* Pods-mapcache-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapcache-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapcache-ios/Pods-mapcache-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		C5C14A8A96D2279034BCA65B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
+		F7E8E4E01DDE337600CD9BF5 /* UIButton+GeoPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GeoPackage.h"; sourceTree = "<group>"; };
+		F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GeoPackage.m"; sourceTree = "<group>"; };
+		F7E8E4E31DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewHeaderFooterView+GeoPackage.h"; sourceTree = "<group>"; };
+		F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewHeaderFooterView+GeoPackage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +467,10 @@
 				04E0EE071B6919D80095E53E /* GPKGSEditTileOverlayViewController.m */,
 				04E0EE091B691A3C0095E53E /* GPKGSEditTileOverlayData.h */,
 				04E0EE0A1B691A3C0095E53E /* GPKGSEditTileOverlayData.m */,
+				F7E8E4E01DDE337600CD9BF5 /* UIButton+GeoPackage.h */,
+				F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */,
+				F7E8E4E31DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.h */,
+				F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -648,6 +658,7 @@
 				045C94941B56DF620005CCD0 /* GPKGSIndexerTask.m in Sources */,
 				047733C91B4C496600E523BD /* GPKGSTableOptionsButton.m in Sources */,
 				04E1D8DF1B682D0F002BD947 /* GPKGSFeatureTilesDrawData.m in Sources */,
+				F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */,
 				043A459E1B84AA5D001B8FC5 /* GPKGSMapPointDataTypes.m in Sources */,
 				044647FC1B4AD1C00052913B /* GPKGSManagerViewController.m in Sources */,
 				045C94A91B5DA5C20005CCD0 /* GPKGSBoundingBoxViewController.m in Sources */,
@@ -664,6 +675,7 @@
 				04E1D8E21B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m in Sources */,
 				04CCC8651B61122A0001296D /* GPKGSGenerateTilesViewController.m in Sources */,
 				044648081B4AF6A70052913B /* GPKGSTileTable.m in Sources */,
+				F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */,
 				047733C41B4C3D1200E523BD /* GPKGSProperties.m in Sources */,
 				0446481E1B4C26DF0052913B /* GPKGSConstants.m in Sources */,
 				04CCC8711B6122480001296D /* GPKGSCreateTilesViewController.m in Sources */,

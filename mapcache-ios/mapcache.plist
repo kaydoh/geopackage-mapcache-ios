@@ -528,7 +528,7 @@
 			<key>name</key>
 			<string>erdc_whitehorse</string>
 		</dict>
-	</array>
+        	</array>
 	<key>preloaded_tile_urls</key>
 	<array>
 		<dict>

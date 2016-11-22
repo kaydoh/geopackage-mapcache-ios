@@ -14,5 +14,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *database;
 @property (weak, nonatomic) IBOutlet UIImageView *expandImage;
 @property (weak, nonatomic) IBOutlet GPKGSDatabaseOptionsButton *optionsButton;
+@property (nonatomic, strong) GPKGSDatabase *geopackage;
 
 @end

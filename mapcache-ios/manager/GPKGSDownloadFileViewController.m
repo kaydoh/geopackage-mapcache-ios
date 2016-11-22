@@ -36,6 +36,20 @@
     self.urlTextField.inputAccessoryView = keyboardToolbar;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
+    
+    CGFloat tableHeight = 45.0f;
+    tableHeight *= [urls count];
+    
+    
+    self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.contentView.frame.size.width, self.exampleTable.frame.origin.y + tableHeight);
+    
+    self.exampleTable.frame = CGRectMake(self.exampleTable.frame.origin.x, self.exampleTable.frame.origin.y, self.exampleTable.frame.size.width, tableHeight);
+    
+    self.contentHeight.constant = self.tableOrigin.constant + tableHeight;
+}
+
 - (void) doneButtonPressed {
     [self.nameTextField resignFirstResponder];
     [self.urlTextField resignFirstResponder];
@@ -71,6 +85,23 @@
     alert.tag = TAG_PRELOADED;
     
     [alert show];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
+    NSDictionary *example = [urls objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"example-gp-cell" forIndexPath:indexPath];
+    cell.textLabel.text = [example objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_LABEL];
+    cell.detailTextLabel.text = [example objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_URL];
+
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
+
+    return [urls count];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

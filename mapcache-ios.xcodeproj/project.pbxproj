@@ -71,6 +71,7 @@
 		04E1D8E21B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1D8E11B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m */; };
 		79B230F4F60AF2BE7816B2CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FF687C0F94F922C6DBA093 /* libPods.a */; };
 		84387B2245BCAFF8D68EA9BD /* libPods-mapcache-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A32E67F6B7DA9539729240 /* libPods-mapcache-ios.a */; };
+		F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
 		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
 		F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */; };
@@ -216,6 +217,8 @@
 		5EF2C0B086224981AE6EF48D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9F28A2703C9375B1E3743910 /* Pods-mapcache-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapcache-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapcache-ios/Pods-mapcache-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		C5C14A8A96D2279034BCA65B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F7A037E11DE4A95B00DD8BE2 /* LoadGeoPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGeoPackageViewController.h; sourceTree = "<group>"; };
+		F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGeoPackageViewController.m; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
 		F7E8E4E01DDE337600CD9BF5 /* UIButton+GeoPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GeoPackage.h"; sourceTree = "<group>"; };
 		F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GeoPackage.m"; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				04E0EE0D1B691AD10095E53E /* GPKGSManagerEditTileOverlayViewController.m */,
 				046877F61C68FE9400967470 /* GPKGSLinkedTablesViewController.h */,
 				046877F71C68FE9400967470 /* GPKGSLinkedTablesViewController.m */,
+				F7A037E11DE4A95B00DD8BE2 /* LoadGeoPackageViewController.h */,
+				F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				045C948D1B50789D0005CCD0 /* GPKGSMapView.m in Sources */,
 				045C949B1B5D4C560005CCD0 /* GPKGSDecimalValidator.m in Sources */,
 				04CCC86B1B6121E90001296D /* GPKGSLoadTilesViewController.m in Sources */,
+				F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */,
 				04CCC8621B60232A0001296D /* GPKGSUIResponder+FirstResponder.m in Sources */,
 				044648111B4B1D960052913B /* GPKGSTableCell.m in Sources */,
 				04CCC86E1B6122040001296D /* GPKGSLoadTilesData.m in Sources */,

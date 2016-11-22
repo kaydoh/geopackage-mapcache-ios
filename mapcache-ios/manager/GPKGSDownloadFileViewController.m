@@ -12,12 +12,16 @@
 #import "GPKGSProperties.h"
 #import "GPKGSConstants.h"
 #import "GPKGSUtils.h"
+#import "LoadGeoPackageViewController.h"
 
 @interface GPKGSDownloadFileViewController ()
 
 @property (nonatomic) BOOL active;
 @property (nonatomic, strong) NSNumber * progress;
 @property (nonatomic, strong) NSNumber * maxProgress;
+@property (nonatomic) int exampleToLoad;
+@property (nonatomic, strong) NSArray *urls;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *loadButton;
 
 @end
 
@@ -27,8 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [GPKGSUtils disableButton:self.importButton];
-    
+    [self.loadButton setEnabled:NO];
+    self.exampleToLoad = -1;
     
     UIToolbar *keyboardToolbar = [GPKGSUtils buildKeyboardDoneToolbarWithTarget:self andAction:@selector(doneButtonPressed)];
     
@@ -37,11 +41,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
+    self.urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
     
     CGFloat tableHeight = 45.0f;
-    tableHeight *= [urls count];
-    
+    tableHeight *= [self.urls count];
     
     self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.contentView.frame.size.width, self.exampleTable.frame.origin.y + tableHeight);
     
@@ -63,10 +66,10 @@
     }
 }
 
+/*
 - (IBAction)preloaded:(id)sender {
     NSMutableArray * options = [[NSMutableArray alloc] init];
-    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
-    for(NSDictionary * url in urls){
+    for(NSDictionary * url in self.urls){
         [options addObject:[url objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_LABEL]];
     }
     
@@ -86,22 +89,36 @@
     
     [alert show];
 }
+ */
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
-    NSDictionary *example = [urls objectAtIndex:indexPath.row];
+    NSDictionary *example = [self.urls objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"example-gp-cell" forIndexPath:indexPath];
     cell.textLabel.text = [example objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_LABEL];
     cell.detailTextLabel.text = [example objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_URL];
-
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray * urls = [GPKGSProperties getArrayOfProperty:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.exampleToLoad != -1) {
+        [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.exampleToLoad inSection:0]].accessoryType = UITableViewCellAccessoryNone;
+    }
+    self.exampleToLoad = (int)indexPath.row;
+    NSDictionary *url = [self.urls objectAtIndex:self.exampleToLoad];
+    [self.nameTextField setText:[url objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_LABEL]];
+    [self.urlTextField setText:[url objectForKey:GPKGS_PROP_PRELOADED_GEOPACKAGE_URLS_URL]];
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    [self updateImportButtonState];
+}
 
-    return [urls count];
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.urls count];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -125,8 +142,9 @@
 
 - (IBAction)import:(id)sender {
     
+    [self.loadButton setEnabled:NO];
+    
     [GPKGSUtils disableButton:self.preloadedButton];
-    [GPKGSUtils disableButton:self.importButton];
     [GPKGSUtils disableTextField:self.urlTextField];
     [GPKGSUtils disableTextField:self.nameTextField];
     
@@ -149,6 +167,14 @@
 
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"loadGeoPackageSegue"]) {
+        LoadGeoPackageViewController *dest = [segue destinationViewController];
+        [dest setName:self.nameTextField.text];
+        [dest setUrl:self.urlTextField.text];
+    }
+}
+
 - (IBAction)nameChanged:(id)sender {
     [self updateImportButtonState];
 }
@@ -159,9 +185,9 @@
 
 -(void) updateImportButtonState{
     if([self.nameTextField.text length] == 0 || [self.urlTextField.text length] == 0){
-        [GPKGSUtils disableButton:self.importButton];
+        [self.loadButton setEnabled:NO];
     }else{
-        [GPKGSUtils enableButton:self.importButton];
+        [self.loadButton setEnabled:YES];
     }
 }
 

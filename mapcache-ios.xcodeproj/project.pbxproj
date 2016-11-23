@@ -71,6 +71,9 @@
 		04E1D8E21B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1D8E11B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m */; };
 		79B230F4F60AF2BE7816B2CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FF687C0F94F922C6DBA093 /* libPods.a */; };
 		84387B2245BCAFF8D68EA9BD /* libPods-mapcache-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A32E67F6B7DA9539729240 /* libPods-mapcache-ios.a */; };
+		F79C28AE1DE60F1E00CF86B6 /* InfoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */; };
+		F79C28B21DE61D8B00CF86B6 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B11DE61D8B00CF86B6 /* InfoTableViewController.m */; };
+		F79C28B51DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B41DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m */; };
 		F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
 		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
@@ -217,6 +220,11 @@
 		5EF2C0B086224981AE6EF48D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9F28A2703C9375B1E3743910 /* Pods-mapcache-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapcache-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapcache-ios/Pods-mapcache-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		C5C14A8A96D2279034BCA65B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoStoryboard.storyboard; sourceTree = "<group>"; };
+		F79C28B01DE61D8B00CF86B6 /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
+		F79C28B11DE61D8B00CF86B6 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
+		F79C28B31DE61F1D00CF86B6 /* GeneralInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralInfoTableViewCell.h; path = info/GeneralInfoTableViewCell.h; sourceTree = "<group>"; };
+		F79C28B41DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralInfoTableViewCell.m; path = info/GeneralInfoTableViewCell.m; sourceTree = "<group>"; };
 		F7A037E11DE4A95B00DD8BE2 /* LoadGeoPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGeoPackageViewController.h; sourceTree = "<group>"; };
 		F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGeoPackageViewController.m; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
@@ -270,6 +278,7 @@
 		040136711AF94FB200C92AFC /* mapcache-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F79C28AF1DE61D6C00CF86B6 /* info */,
 				044D6B481B627AB400527745 /* load */,
 				045C949C1B5D89E80005CCD0 /* ui */,
 				045C94911B56DEFA0005CCD0 /* indexer */,
@@ -285,6 +294,7 @@
 				040136721AF94FB200C92AFC /* Supporting Files */,
 				047733C51B4C3E3400E523BD /* mapcache.plist */,
 				F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */,
+				F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */,
 			);
 			path = "mapcache-ios";
 			sourceTree = "<group>";
@@ -491,6 +501,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F79C28AF1DE61D6C00CF86B6 /* info */ = {
+			isa = PBXGroup;
+			children = (
+				F79C28B01DE61D8B00CF86B6 /* InfoTableViewController.h */,
+				F79C28B11DE61D8B00CF86B6 /* InfoTableViewController.m */,
+				F79C28B31DE61F1D00CF86B6 /* GeneralInfoTableViewCell.h */,
+				F79C28B41DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m */,
+			);
+			name = info;
+			sourceTree = "<group>";
+		};
 		F92DE52400ADCEC8CC3BBB88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +611,7 @@
 				F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */,
 				040136861AF94FB200C92AFC /* LaunchScreen.xib in Resources */,
 				040136831AF94FB200C92AFC /* Images.xcassets in Resources */,
+				F79C28AE1DE60F1E00CF86B6 /* InfoStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +712,7 @@
 				044647FF1B4AF3870052913B /* GPKGSTable.m in Sources */,
 				04CCC85F1B60225C0001296D /* GPKGSKeyboardConstraint.m in Sources */,
 				040136781AF94FB200C92AFC /* AppDelegate.m in Sources */,
+				F79C28B21DE61D8B00CF86B6 /* InfoTableViewController.m in Sources */,
 				04E1D8D01B66D366002BD947 /* GPKGSEditContentsViewController.m in Sources */,
 				044648021B4AF4250052913B /* GPKGSTableTypes.m in Sources */,
 				045C948D1B50789D0005CCD0 /* GPKGSMapView.m in Sources */,
@@ -707,6 +730,7 @@
 				04E0EE051B69112B0095E53E /* GPKGSAddTileOverlayViewController.m in Sources */,
 				045C94861B50226D0005CCD0 /* GPKGSFeatureOverlayTable.m in Sources */,
 				04082B561B4F18A000D65E6B /* GPKGSUtils.m in Sources */,
+				F79C28B51DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m in Sources */,
 				04CCC8741B61228D0001296D /* GPKGSCreateTilesData.m in Sources */,
 				045C94981B5D384A0005CCD0 /* GPKGSCreateFeaturesViewController.m in Sources */,
 				0446480B1B4AFC100052913B /* GPKGSDatabase.m in Sources */,
@@ -847,6 +871,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "mapcache-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -861,6 +886,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "mapcache-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -35,6 +35,7 @@
 #import "GPKGSLinkedTablesViewController.h"
 #import "UIButton+GeoPackage.h"
 #import "UITableViewHeaderFooterView+GeoPackage.h"
+#import "InfoTableViewController.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -121,37 +122,6 @@ const char ConstantKey;
     }
 }
 
-/*
--(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 35;
-}
- */
-
-/*
--(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView * cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_DATABASE];
-    
-    GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
-    
-    GPKGSDatabaseCell * dbCell = (GPKGSDatabaseCell *) cell;
-    [dbCell.database setText:database.name];
-    NSString *expandImage = database.expanded ? [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_UP] : [GPKGSProperties getValueOfProperty:GPKGS_PROP_ICON_DOWN];
-    [dbCell.expandImage setImage:[UIImage imageNamed:expandImage]];
-    [dbCell.optionsButton setDatabase:database];
-    dbCell.geopackage = database;
-    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    //[singleTapRecognizer setDelegate:self];
-    singleTapRecognizer.numberOfTouchesRequired = 1;
-    singleTapRecognizer.numberOfTapsRequired = 1;
-    [dbCell addGestureRecognizer:singleTapRecognizer];
-    
-    UIView *view = [[UIView alloc] initWithFrame:[cell frame]];
-    view.backgroundColor = [UIColor blueColor];
-    [view addSubview:cell];
-    
-    return view;
-}
- */
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
@@ -189,7 +159,8 @@ const char ConstantKey;
 }
 
 - (void) headerButtonClick: (UIButton *) button {
-    [self expandOrCollapseDatabase:button.geoPackage];
+    
+    [self performSegueWithIdentifier:@"showGeoPackageInfo" sender:button.geoPackage];
 }
 
 -(void) update{
@@ -1105,16 +1076,19 @@ const char ConstantKey;
     }
 }
 
-- (void)downloadFileViewController:(GPKGSDownloadFileViewController *)controller downloadedFile:(BOOL)downloaded withError: (NSString *) error{
+/*
+- (void)url:(NSString *)url withName: (NSString *) name downloadedFile:(BOOL)downloaded withError: (NSString *) error{
     if(downloaded){
         [self updateAndReloadData];
     }
     if(error != nil){
         [GPKGSUtils showMessageWithDelegate:self
                                    andTitle:[GPKGSProperties getValueOfProperty:GPKGS_PROP_IMPORT_URL_ERROR]
-                                 andMessage:[NSString stringWithFormat:@"Error downloading '%@' at:\n%@\n\nError: %@", controller.nameTextField.text, controller.urlTextField.text, error]];
+                                 andMessage:[NSString stringWithFormat:@"Error downloading '%@' at:\n%@\n\nError: %@", name, url, error]];
     }
 }
+*/
+
 
 - (void)createFeaturesViewController:(GPKGSCreateFeaturesViewController *)controller createdFeatures:(BOOL)created withError: (NSString *) error{
     if(created){
@@ -1208,7 +1182,6 @@ const char ConstantKey;
     if([segue.identifier isEqualToString:GPKGS_MANAGER_SEG_DOWNLOAD_FILE])
     {
         GPKGSDownloadFileViewController *downloadFileViewController = segue.destinationViewController;
-        downloadFileViewController.delegate = self;
     }else if([segue.identifier isEqualToString:GPKGS_MANAGER_SEG_DISPLAY_TEXT]){
         GPKGSDisplayTextViewController *displayTextViewController = segue.destinationViewController;
         if([sender isKindOfClass:[GPKGSDatabase class]]){
@@ -1276,6 +1249,11 @@ const char ConstantKey;
         linkedTablesViewController.delegate = self;
         linkedTablesViewController.table = table;
         linkedTablesViewController.manager = self.manager;
+    } else if ([segue.identifier isEqualToString:@"showGeoPackageInfo"]) {
+        GPKGSDatabase *gp = (GPKGSDatabase *)sender;
+        NSLog(@"gp name %@", gp.name);
+        InfoTableViewController *c = segue.destinationViewController;
+        c.database = gp;
     }
     
 }
@@ -1321,6 +1299,9 @@ const char ConstantKey;
 
 -(void) onIndexerCompleted: (int) count{
     
+}
+
+-(IBAction)unwindToManager:(UIStoryboardSegue *)segue {
 }
 
 @end

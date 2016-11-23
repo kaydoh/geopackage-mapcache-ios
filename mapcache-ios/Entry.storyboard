@@ -83,10 +83,10 @@
                         <color key="sectionIndexBackgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageFeatureTableCell" id="YQu-Gc-um6" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQu-Gc-um6" id="aXV-17-reX">
-                                    <frame key="frameInset" width="328" height="44"/>
+                                    <frame key="frameInset" width="328" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr4-cI-pC2">
@@ -139,10 +139,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="jFa-li-gr1" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jFa-li-gr1" id="40y-bW-Pqa">
-                                    <frame key="frameInset" width="328" height="44"/>
+                                    <frame key="frameInset" width="328" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="k5g-Ia-HQd" customClass="GPKGSActiveTableSwitch">
@@ -212,6 +212,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="LMr-py-PSR" kind="show" identifier="showGeoPackageInfo" id="Y5j-2t-LYa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeV-8m-ZTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,6 +396,14 @@
             </objects>
             <point key="canvasLocation" x="1764" y="-235"/>
         </scene>
+        <!--InfoStoryboard-->
+        <scene sceneID="PLe-B4-p7Y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoStoryboard" id="LMr-py-PSR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NhF-5h-2b6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1763" y="179"/>
+        </scene>
         <!--Load Geo Package View Controller-->
         <scene sceneID="s29-ko-Fve">
             <objects>
@@ -405,6 +416,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyo-Xg-hpW">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.80784314870834351" green="0.90980392694473267" blue="0.85882353782653809" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GeoPackage Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-SA-ZZQ">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.80784314870834351" green="0.90980392694473267" blue="0.85882353782653809" alpha="1" colorSpace="calibratedRGB"/>
@@ -418,20 +434,25 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0i7-It-QYC">
                                 <color key="progressTintColor" red="0.49019607901573181" green="0.7450980544090271" blue="0.81568628549575806" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHJ-ke-bYU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHJ-ke-bYU">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.80784314870834351" green="0.90980392694473267" blue="0.85882353782653809" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyo-Xg-hpW">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.80784314870834351" green="0.90980392694473267" blue="0.85882353782653809" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5of-kN-0iD">
+                                <state key="normal" title="Cancel Download">
+                                    <color key="titleColor" red="0.49019607900000001" green="0.74509805439999999" blue="0.8156862855" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="ziu-vR-8G7" eventType="touchUpInside" id="I7a-wy-6DN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.18431372939999999" green="0.2392156869" blue="0.2941176593" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5of-kN-0iD" firstAttribute="top" secondItem="RHJ-ke-bYU" secondAttribute="bottom" constant="98" id="48A-UY-x9a"/>
                             <constraint firstItem="0i7-It-QYC" firstAttribute="centerY" secondItem="ff8-xm-0jb" secondAttribute="centerY" id="8r1-nY-Jxn"/>
+                            <constraint firstItem="5of-kN-0iD" firstAttribute="centerX" secondItem="ff8-xm-0jb" secondAttribute="centerX" id="DU4-M0-KVf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0i7-It-QYC" secondAttribute="trailing" id="Efd-v4-zKb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="E9L-nz-h1c" secondAttribute="trailing" id="IyE-kB-j8e"/>
                             <constraint firstAttribute="leadingMargin" secondItem="0i7-It-QYC" secondAttribute="leading" id="P59-Dd-hsN"/>
@@ -454,9 +475,11 @@
                         <outlet property="nameLabel" destination="Ca1-SA-ZZQ" id="WOa-GR-vNT"/>
                         <outlet property="progressView" destination="0i7-It-QYC" id="mS1-HU-Jcv"/>
                         <outlet property="urlLabel" destination="E9L-nz-h1c" id="9PS-3P-22F"/>
+                        <segue destination="6KO-SO-WK3" kind="unwind" identifier="unwindToManager" unwindAction="unwindToManager:" id="oJ6-8b-KFm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8v-71-g1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6KO-SO-WK3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2533.5999999999999" y="-235.23238380809596"/>
         </scene>

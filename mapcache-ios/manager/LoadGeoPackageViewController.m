@@ -10,6 +10,7 @@
 #import "GPKGGeoPackageManager.h"
 #import <GPKGGeoPackageFactory.h>
 #import "GPKGIOUtils.h"
+#import "GPKGSConstants.h"
 
 @interface LoadGeoPackageViewController ()
 
@@ -56,6 +57,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)cancel:(id)sender {
+    if(self.active){
+        self.active = false;
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 -(void) updateProgress{
     if(self.maxProgress != nil){
         float progress = [self.progress floatValue] / [self.maxProgress floatValue];
@@ -84,33 +93,21 @@
 
 -(void) completed{
     NSLog(@"completed");
-    /*
-    if(self.delegate != nil){
-        [self.delegate downloadFileViewController:self downloadedFile:true withError:nil];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
-     */
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:GPKGS_IMPORT_GEOPACKAGE_NOTIFICATION object:nil];
+    [self performSegueWithIdentifier:@"unwindToManager" sender:self];
 }
 
 -(void) failureWithError: (NSString *) error{
     NSLog(@"error");
-    /*
-    NSString * errorMessage = error;
+    
+    /*NSString * errorMessage = error;
     if(self.delegate != nil){
-        [self.delegate downloadFileViewController:self downloadedFile:false withError:errorMessage];
+        [self.delegate url:self.url withName: self.name downloadedFile:false withError:errorMessage];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
      */
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

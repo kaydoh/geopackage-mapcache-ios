@@ -11,13 +11,9 @@
 
 @class GPKGSDownloadFileViewController;
 
-@protocol GPKGSDownloadFileDelegate <NSObject>
-- (void)downloadFileViewController:(GPKGSDownloadFileViewController *)controller downloadedFile:(BOOL)downloaded withError: (NSString *) error;
-@end
 
-@interface GPKGSDownloadFileViewController : UIViewController <GPKGProgress, UITableViewDelegate, UITableViewDataSource>
+@interface GPKGSDownloadFileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) id <GPKGSDownloadFileDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *preloadedButton;
 @property (weak, nonatomic) IBOutlet UIButton *importButton;

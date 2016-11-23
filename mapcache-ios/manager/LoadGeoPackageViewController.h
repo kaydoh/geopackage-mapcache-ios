@@ -12,7 +12,6 @@
 
 @interface LoadGeoPackageViewController : UIViewController <GPKGProgress>
 
-@property (nonatomic, weak) id <GPKGSDownloadFileDelegate> delegate;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *name;
 @property (weak, nonatomic) IBOutlet UILabel *downloadLabel;

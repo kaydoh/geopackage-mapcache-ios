@@ -12,5 +12,6 @@
 @interface UITableViewHeaderFooterView (GeoPackage)
 
 @property (nonatomic, retain) GPKGSDatabase *geoPackage;
+@property (nonatomic, retain) NSObject *data;
 
 @end

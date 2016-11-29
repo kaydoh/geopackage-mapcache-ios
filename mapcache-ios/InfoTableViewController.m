@@ -12,6 +12,7 @@
 #import "GPKGGeoPackageFactory.h"
 #import "GPKGSTableCell.h"
 #import "GPKGSConstants.h"
+#import "GPKGSProperties.h"
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 
 @interface InfoTableViewController ()
@@ -53,13 +54,13 @@
         return nil;
     } else if (section == 1) {
         if (rows != 0) {
-            return [self.tileTablesExpanded ? @"\u25b2 " : @"\u25bc " stringByAppendingString:@"Tile Tables"];
+            return [self.tileTablesExpanded ? @"\u25bc " : @"\u25b6 " stringByAppendingString:@"Tile Tables"];
         } else {
             return @"Tile Tables";
         }
     } else if (section == 2) {
         if (rows != 0) {
-            return [self.featureTablesExpanded ? @"\u25b2 " : @"\u25bc " stringByAppendingString:@"Feature Tables"];
+            return [self.featureTablesExpanded ? @"\u25bc " : @"\u25b6 "stringByAppendingString:@"Feature Tables"];
         } else {
             return @"Feature Tables";
         }
@@ -176,6 +177,67 @@
     GPKGGeoPackageManager *manager = [GPKGGeoPackageFactory getManager];
     self.geoPackage = [manager open:database.name];
 }
+
+- (IBAction)deleteButtonPress:(id)sender {
+    NSString * label = [GPKGSProperties getValueOfProperty:GPKGS_PROP_GEOPACKAGE_DELETE_LABEL];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:label message:[NSString stringWithFormat:@"%@ %@?", label, self.geoPackage.name] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:label
+                                                           style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self handleDeleteDatabase:action];
+                                                          }];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:[GPKGSProperties getValueOfProperty:GPKGS_PROP_CANCEL_LABEL]
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
+    
+    [alert addAction:deleteAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void) deleteDatabaseOption: (NSString *) database{
+    NSString * label = [GPKGSProperties getValueOfProperty:GPKGS_PROP_GEOPACKAGE_DELETE_LABEL];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:label
+                                                                   message:[NSString stringWithFormat:@"%@ %@?", label, database]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:label
+                                                           style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction * action) {
+                                                             [self handleDeleteDatabase:action];
+                                                         }];
+    
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:[GPKGSProperties getValueOfProperty:GPKGS_PROP_CANCEL_LABEL]
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:deleteAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void) handleDeleteDatabase: (UIAlertAction *)action {
+    GPKGGeoPackageManager *manager = [GPKGGeoPackageFactory getManager];
+    [manager delete:self.geoPackage.name];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GPKGS_DELETE_GEOPACKAGE_NOTIFICATION object:self.geoPackage.name];
+    [self performSegueWithIdentifier:@"unwindToManager" sender:self];
+    //[self.active removeDatabase:database andPreserveOverlays:false];
+    //[self updateAndReloadData];
+}
+
+/*
+- (void) handleDeleteDatabaseWithAlertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex > 0){
+        NSString *database = objc_getAssociatedObject(alertView, &ConstantKey);
+        [self.manager delete:database];
+        [self.active removeDatabase:database andPreserveOverlays:false];
+        [self updateAndReloadData];
+    }
+}
+ */
 
 
 /*

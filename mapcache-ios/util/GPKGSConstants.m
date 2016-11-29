@@ -11,6 +11,7 @@
 NSString * const GPKGS_MAPCACHE_RESOURCES_PROPERTIES = @"mapcache";
 NSString * const GPKGS_ANIMATE_SCREEN_TOUCHES = @"animate_screen_touches";
 NSString * const GPKGS_IMPORT_GEOPACKAGE_NOTIFICATION = @"ImportGeoPackageNotification";
+NSString * const GPKGS_DELETE_GEOPACKAGE_NOTIFICATION = @"DeleteGeoPackageNotification";
 NSString * const GPKGS_CELL_DATABASE = @"GeoPackageDatabaseCell";
 NSString * const GPKGS_CELL_TABLE = @"GeoPackageTableCell";
 NSString * const GPKGS_CELL_FEATURE_TABLE = @"GeoPackageFeatureTableCell";

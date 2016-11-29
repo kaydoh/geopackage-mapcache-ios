@@ -125,7 +125,7 @@ const char ConstantKey;
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
-    NSString *expando = database.expanded ? @"\u25b2 " : @"\u25bc ";
+    NSString *expando = database.expanded ? @"\u25bc " : @"\u25b6 ";
     return [expando stringByAppendingString: database.name];
 }
 

@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tileLayersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *featureLayersLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 - (void) setupCellWithGeoPackage: (GPKGGeoPackage *) geoPackage;
 

@@ -11,6 +11,7 @@
 #import "GPKGSFeatureTable.h"
 #import "GPKGSFeatureOverlayTable.h"
 #import "GPKGSFeatureTable.h"
+#import "GPKGSConstants.h"
 
 NSString * const GPKGS_DATABASES_PREFERENCE = @"databases";
 NSString * const GPKGS_TILE_TABLES_PREFERENCE_SUFFIX = @"_tile_tables";
@@ -45,8 +46,19 @@ static GPKGSDatabases * instance;
         self.settings = settings;
         self.modified = false;
         self.databases = [[NSMutableDictionary alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleDeleteGeoPackageNotification:)
+                                                     name:GPKGS_DELETE_GEOPACKAGE_NOTIFICATION
+                                                   object:nil];
+        
     }
     return self;
+}
+
+-(void) handleDeleteGeoPackageNotification:(NSNotification *) notification {
+    NSString *database = (NSString *)[notification object];
+    [self removeDatabase:database andPreserveOverlays:false];
 }
 
 -(BOOL) exists: (GPKGSTable *) table{

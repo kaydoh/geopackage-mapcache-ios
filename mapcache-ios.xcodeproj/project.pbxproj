@@ -74,6 +74,8 @@
 		F79C28AE1DE60F1E00CF86B6 /* InfoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */; };
 		F79C28B21DE61D8B00CF86B6 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B11DE61D8B00CF86B6 /* InfoTableViewController.m */; };
 		F79C28B51DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B41DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m */; };
+		F79C28B71DF0848400CF86B6 /* FeatureTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F79C28B61DF0848400CF86B6 /* FeatureTable.storyboard */; };
+		F79C28BA1DF087EE00CF86B6 /* FeatureTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B91DF087EE00CF86B6 /* FeatureTableTableViewController.m */; };
 		F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
 		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
@@ -225,6 +227,9 @@
 		F79C28B11DE61D8B00CF86B6 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		F79C28B31DE61F1D00CF86B6 /* GeneralInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralInfoTableViewCell.h; path = info/GeneralInfoTableViewCell.h; sourceTree = "<group>"; };
 		F79C28B41DE61F1D00CF86B6 /* GeneralInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralInfoTableViewCell.m; path = info/GeneralInfoTableViewCell.m; sourceTree = "<group>"; };
+		F79C28B61DF0848400CF86B6 /* FeatureTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeatureTable.storyboard; sourceTree = "<group>"; };
+		F79C28B81DF087EE00CF86B6 /* FeatureTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeatureTableTableViewController.h; path = features/FeatureTableTableViewController.h; sourceTree = "<group>"; };
+		F79C28B91DF087EE00CF86B6 /* FeatureTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeatureTableTableViewController.m; path = features/FeatureTableTableViewController.m; sourceTree = "<group>"; };
 		F7A037E11DE4A95B00DD8BE2 /* LoadGeoPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGeoPackageViewController.h; sourceTree = "<group>"; };
 		F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGeoPackageViewController.m; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
@@ -295,6 +300,8 @@
 				047733C51B4C3E3400E523BD /* mapcache.plist */,
 				F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */,
 				F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */,
+				F79C28B61DF0848400CF86B6 /* FeatureTable.storyboard */,
+				F79C28BB1DF0880400CF86B6 /* features */,
 			);
 			path = "mapcache-ios";
 			sourceTree = "<group>";
@@ -512,6 +519,15 @@
 			name = info;
 			sourceTree = "<group>";
 		};
+		F79C28BB1DF0880400CF86B6 /* features */ = {
+			isa = PBXGroup;
+			children = (
+				F79C28B81DF087EE00CF86B6 /* FeatureTableTableViewController.h */,
+				F79C28B91DF087EE00CF86B6 /* FeatureTableTableViewController.m */,
+			);
+			name = features;
+			sourceTree = "<group>";
+		};
 		F92DE52400ADCEC8CC3BBB88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +625,7 @@
 				047733C61B4C3E3400E523BD /* mapcache.plist in Resources */,
 				040136811AF94FB200C92AFC /* Main.storyboard in Resources */,
 				F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */,
+				F79C28B71DF0848400CF86B6 /* FeatureTable.storyboard in Resources */,
 				040136861AF94FB200C92AFC /* LaunchScreen.xib in Resources */,
 				040136831AF94FB200C92AFC /* Images.xcassets in Resources */,
 				F79C28AE1DE60F1E00CF86B6 /* InfoStoryboard.storyboard in Resources */,
@@ -700,6 +717,7 @@
 				04082B531B4EBE6F00D65E6B /* GPKGSDownloadFileViewController.m in Sources */,
 				04E1D8D61B66D439002BD947 /* GPKGSEditTilesViewController.m in Sources */,
 				04E1D8E21B682D5D002BD947 /* GPKGSCreateFeatureTilesViewController.m in Sources */,
+				F79C28BA1DF087EE00CF86B6 /* FeatureTableTableViewController.m in Sources */,
 				04CCC8651B61122A0001296D /* GPKGSGenerateTilesViewController.m in Sources */,
 				044648081B4AF6A70052913B /* GPKGSTileTable.m in Sources */,
 				F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */,

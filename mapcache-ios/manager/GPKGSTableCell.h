@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GPKGSActiveTableSwitch.h"
 #import "GPKGSTableOptionsButton.h"
+#import "GPKGSTable.h"
+#import <GPKGBaseDao.h>
 
 @interface GPKGSTableCell : UITableViewCell
 
@@ -17,5 +19,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *tableName;
 @property (weak, nonatomic) IBOutlet UILabel *count;
 @property (weak, nonatomic) IBOutlet GPKGSTableOptionsButton *optionsButton;
+@property (weak, nonatomic) GPKGSTable *table;
+@property (strong, nonatomic) GPKGBaseDao *dao;
 
 @end

@@ -16,8 +16,10 @@
 #import "GPKGSDatabases.h"
 #import "GPKGSTileTable.h"
 #import "GPKGSFeatureTable.h"
+#import "GPKGSTable.h"
 #import <GPKGSpatialReferenceSystemDao.h>
 #import "UITableViewHeaderFooterView+GeoPackage.h"
+#import "FeatureTableTableViewController.h"
 
 @interface InfoTableViewController ()
 
@@ -140,7 +142,7 @@
         
         GPKGSTileTable * table = [[GPKGSTileTable alloc] initWithDatabase:self.geoPackage.name andName:tileTableName andCount:count];
         [table setActive:[self.active exists:table]];
-        
+        cell.table = table;
         cell.active.table = table;
         cell.active.on = table.active;
         [cell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
@@ -157,7 +159,8 @@
         
         GPKGSFeatureTable * table = [[GPKGSFeatureTable alloc] initWithDatabase:self.geoPackage.name andName:featureTableName andCount:count];
         [table setActive:[self.active exists:table]];
-        
+        cell.table = table;
+        cell.dao = featureDao;
         cell.active.table = table;
         cell.active.on = table.active;
         [cell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
@@ -187,7 +190,7 @@
     
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
         UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *) view;
-        [hfv.textLabel setTextColor:[UIColor colorWithRed:208.0f/256.0f green:234.0f/256.0f blue:221.0f/256.0f alpha:1.0f]];
+        [hfv.textLabel setTextColor:[UIColor colorWithRed:144.0f/256.0f green:201.0f/256.0f blue:216.0f/256.0f alpha:1.0f]];
         hfv.data = [NSNumber numberWithInteger:section];
         NSInteger rows = [self tablesInSection:section];
         if (rows == 0) {
@@ -356,14 +359,24 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"featureTableSegue"]) {
+        FeatureTableTableViewController *vc = (FeatureTableTableViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setTable:(GPKGSFeatureTable *)cell.table];
+        [vc setDatabase:self.database];
+        [vc setGeoPackage:self.geoPackage];
+        [vc setDao:(GPKGFeatureDao *)cell.dao];
+    }
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -165,6 +165,7 @@
                                     <outlet property="active" destination="ND5-Kp-LTJ" id="enE-Cz-07S"/>
                                     <outlet property="count" destination="WYv-23-PXo" id="EfH-cw-Etm"/>
                                     <outlet property="tableName" destination="hoR-b4-sJi" id="1rU-tn-TAM"/>
+                                    <segue destination="pOp-Hc-nKt" kind="show" identifier="featureTableSegue" trigger="accessoryAction" id="WJR-k8-KcM"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="9ou-es-exP" customClass="GPKGSTableCell">
@@ -297,6 +298,14 @@
                 <exit id="dtn-gE-vQW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="169.56521739130437"/>
+        </scene>
+        <!--FeatureTable-->
+        <scene sceneID="Pt5-oT-qGT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FeatureTable" id="pOp-Hc-nKt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehb-dv-brD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="628" y="44"/>
         </scene>
     </scenes>
     <resources>

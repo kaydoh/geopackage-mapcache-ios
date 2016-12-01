@@ -17,6 +17,7 @@ extern NSString * const GPKGS_CELL_TABLE;
 extern NSString * const GPKGS_CELL_FEATURE_TABLE;
 extern NSString * const GPKGS_CELL_TILE_TABLE;
 extern NSString * const GPKGS_CELL_LINKED_TABLE;
+extern NSString * const GPKGS_CELL_SRS;
 extern NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_IMAGE;
 extern NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_ACTIVE_IMAGE;
 extern NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_CLEAR_IMAGE;

@@ -57,7 +57,6 @@
                                                 <constraint firstItem="ubq-Bf-NgZ" firstAttribute="leading" secondItem="NBp-DG-LZK" secondAttribute="leading" id="1Qj-NC-KTd"/>
                                                 <constraint firstAttribute="trailing" secondItem="ubq-Bf-NgZ" secondAttribute="trailing" id="Goy-lq-5yS"/>
                                                 <constraint firstItem="Ve2-Jo-e2b" firstAttribute="leading" secondItem="NBp-DG-LZK" secondAttribute="leading" id="gF3-vM-QNt"/>
-                                                <constraint firstAttribute="height" constant="29" id="q1j-rW-KUw"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ve2-Jo-e2b" secondAttribute="trailing" id="uOY-0b-x5t"/>
                                             </constraints>
                                         </stackView>
@@ -129,6 +128,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ND5-Kp-LTJ" customClass="GPKGSActiveTableSwitch">
                                             <color key="onTintColor" red="0.031372549020000001" green="0.56470588239999997" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="tableActiveChanged:" destination="nKG-Mj-j06" eventType="valueChanged" id="8YR-cd-A1d"/>
+                                            </connections>
                                         </switch>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeatureTable" translatesAutoresizingMaskIntoConstraints="NO" id="1GQ-Vy-cv1">
                                             <constraints>
@@ -175,6 +177,9 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HJ7-bB-hMB" customClass="GPKGSActiveTableSwitch">
                                             <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="onTintColor" red="0.031372549020000001" green="0.56470588239999997" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="tableActiveChanged:" destination="nKG-Mj-j06" eventType="valueChanged" id="j6t-S7-JpR"/>
+                                            </connections>
                                         </switch>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileTable" translatesAutoresizingMaskIntoConstraints="NO" id="5d0-5u-SEq">
                                             <constraints>
@@ -219,16 +224,51 @@
                                     <outlet property="tableName" destination="0kl-XH-5Rq" id="DSt-vL-x1K"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rPW-K5-gQV">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="SpatialReferenceCell" id="Vd5-UX-k6p" customClass="GPKGSTableCell">
                                 <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vd5-UX-k6p" id="2E7-ga-OTw">
+                                    <frame key="frameInset" width="328" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Srs" translatesAutoresizingMaskIntoConstraints="NO" id="ki2-JH-OIn">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="29" id="KQ9-KB-0jM"/>
+                                                <constraint firstAttribute="width" constant="29" id="UaY-0D-3LS"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPSG : XXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayc-Gq-BxX">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="ki2-JH-OIn" secondAttribute="leading" id="3vn-KV-afG"/>
+                                        <constraint firstItem="Ayc-Gq-BxX" firstAttribute="top" secondItem="2E7-ga-OTw" secondAttribute="topMargin" constant="3" id="89K-gM-un1"/>
+                                        <constraint firstItem="Ayc-Gq-BxX" firstAttribute="leading" secondItem="ki2-JH-OIn" secondAttribute="trailing" constant="8" id="Sxb-jm-xEF"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ayc-Gq-BxX" secondAttribute="trailing" constant="-8" id="qgm-TC-Tr2"/>
+                                        <constraint firstItem="ki2-JH-OIn" firstAttribute="top" secondItem="2E7-ga-OTw" secondAttribute="topMargin" constant="-1" id="zy4-WU-4j7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="tableName" destination="Ayc-Gq-BxX" id="IA5-mf-yIB"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rPW-K5-gQV">
+                                <rect key="frame" x="0.0" y="308" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rPW-K5-gQV" id="u5y-Aw-gYM">
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.18431372940540314" green="0.23921568691730499" blue="0.29411765933036804" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zDE-dO-aEp">
-                                <rect key="frame" x="0.0" y="308" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="352" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zDE-dO-aEp" id="8Mg-OU-KVC">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -236,7 +276,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DJ9-ZC-qTj">
-                                <rect key="frame" x="0.0" y="352" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="396" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DJ9-ZC-qTj" id="KQc-gx-MYD">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -261,6 +301,7 @@
     </scenes>
     <resources>
         <image name="FeatureTable" width="29" height="29"/>
+        <image name="Srs" width="29" height="29"/>
         <image name="TileTable" width="29" height="29"/>
     </resources>
 </document>

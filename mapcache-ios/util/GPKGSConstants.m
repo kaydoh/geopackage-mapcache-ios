@@ -17,6 +17,7 @@ NSString * const GPKGS_CELL_TABLE = @"GeoPackageTableCell";
 NSString * const GPKGS_CELL_FEATURE_TABLE = @"GeoPackageFeatureTableCell";
 NSString * const GPKGS_CELL_TILE_TABLE = @"GeoPackageTileTableCell";
 NSString * const GPKGS_CELL_LINKED_TABLE = @"LinkedTableCell";
+NSString * const GPKGS_CELL_SRS = @"SpatialReferenceCell";
 NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_IMAGE = @"boundingbox";
 NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_ACTIVE_IMAGE = @"boundingboxactive";
 NSString * const GPKGS_MAP_BUTTON_BOUNDING_BOX_CLEAR_IMAGE = @"MapClear";

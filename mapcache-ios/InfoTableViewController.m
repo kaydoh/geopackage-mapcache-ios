@@ -13,6 +13,10 @@
 #import "GPKGSTableCell.h"
 #import "GPKGSConstants.h"
 #import "GPKGSProperties.h"
+#import "GPKGSDatabases.h"
+#import "GPKGSTileTable.h"
+#import "GPKGSFeatureTable.h"
+#import <GPKGSpatialReferenceSystemDao.h>
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 
 @interface InfoTableViewController ()
@@ -20,6 +24,9 @@
 @property GPKGGeoPackage *geoPackage;
 @property BOOL tileTablesExpanded;
 @property BOOL featureTablesExpanded;
+@property BOOL spatialReferenceSystemsExpanded;
+@property (nonatomic, strong) GPKGSDatabases *active;
+@property NSMutableArray *spatialReferenceSystems;
 
 @end
 
@@ -29,6 +36,17 @@
     [super viewDidLoad];
     self.tileTablesExpanded = YES;
     self.featureTablesExpanded = YES;
+    self.spatialReferenceSystemsExpanded = YES;
+    self.active = [GPKGSDatabases getInstance];
+    GPKGResultSet *srsResults = [[self.geoPackage getSpatialReferenceSystemDao] queryForAll];
+    
+    self.spatialReferenceSystems = [[NSMutableArray alloc] init];
+    while([srsResults moveToNext]) {
+        GPKGSpatialReferenceSystem *srs = (GPKGSpatialReferenceSystem *)[[self.geoPackage getSpatialReferenceSystemDao] getObject:srsResults];
+        [self.spatialReferenceSystems addObject:srs];
+    }
+    
+    [srsResults close];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -45,7 +63,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -64,6 +82,12 @@
         } else {
             return @"Feature Tables";
         }
+    } else if (section == 3) {
+        if (rows != 0) {
+            return [self.spatialReferenceSystemsExpanded ? @"\u25bc " : @"\u25b6 "stringByAppendingString:@"Spatial Reference Systems"];
+        } else {
+            return @"Spatial Reference Systems";
+        }
     }
     return nil;
 }
@@ -80,6 +104,8 @@
         return [self.geoPackage getTileTableCount];
     } else if (section == 2) {
         return [self.geoPackage getFeatureTableCount];
+    } else if (section == 3) {
+        return [[self.geoPackage getSpatialReferenceSystemDao] count];
     }
     return 0;
 }
@@ -91,10 +117,11 @@
         return self.tileTablesExpanded ? [self tablesInSection:section] : 0;
     } else if (section == 2) {
         return self.featureTablesExpanded ? [self tablesInSection:section] : 0;
+    } else if (section == 3) {
+        return self.spatialReferenceSystemsExpanded ? [self tablesInSection:section] : 0;
     }
     return 0;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -105,10 +132,43 @@
     } else if (indexPath.section == 1) {
         GPKGSTableCell *cell = (GPKGSTableCell *)[tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TILE_TABLE forIndexPath:indexPath];
         
+        NSString *tileTableName = [[self.geoPackage getTileTables] objectAtIndex:indexPath.row];
+        cell.tableName.text = tileTableName;
+        
+        GPKGTileDao * tileDao = [self.geoPackage getTileDaoWithTableName: tileTableName];
+        int count = [tileDao count];
+        
+        GPKGSTileTable * table = [[GPKGSTileTable alloc] initWithDatabase:self.geoPackage.name andName:tileTableName andCount:count];
+        [table setActive:[self.active exists:table]];
+        
+        cell.active.table = table;
+        cell.active.on = table.active;
+        [cell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
+        
         return cell;
     } else if (indexPath.section == 2) {
         GPKGSTableCell *cell = (GPKGSTableCell *)[tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_FEATURE_TABLE forIndexPath:indexPath];
+
+        NSString *featureTableName = [[self.geoPackage getFeatureTables] objectAtIndex:indexPath.row];
+        cell.tableName.text = featureTableName;
+        
+        GPKGFeatureDao * featureDao = [self.geoPackage getFeatureDaoWithTableName: featureTableName];
+        int count = [featureDao count];
+        
+        GPKGSFeatureTable * table = [[GPKGSFeatureTable alloc] initWithDatabase:self.geoPackage.name andName:featureTableName andCount:count];
+        [table setActive:[self.active exists:table]];
+        
+        cell.active.table = table;
+        cell.active.on = table.active;
+        [cell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
     
+        return cell;
+    } else if (indexPath.section == 3) {
+        GPKGSTableCell *cell = (GPKGSTableCell *)[tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_SRS forIndexPath:indexPath];
+        GPKGSpatialReferenceSystem *srs = [self.spatialReferenceSystems objectAtIndex:indexPath.row];
+        
+        cell.tableName.text = [NSString stringWithFormat:@"%@ %@", srs.srsName, srs.srsId];
+        
         return cell;
     }
     return nil;
@@ -166,12 +226,34 @@
         self.featureTablesExpanded = !self.featureTablesExpanded;
         [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    if ([section isEqualToNumber:[NSNumber numberWithInt:3]]) {
+        self.spatialReferenceSystemsExpanded = !self.spatialReferenceSystemsExpanded;
+        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 - (void) headerButtonClick: (UIButton *) button {
     
     //[self performSegueWithIdentifier:@"showGeoPackageInfo" sender:button.geoPackage];
 }
+
+- (IBAction)tableActiveChanged:(GPKGSActiveTableSwitch *)sender {
+    GPKGSTable * table = sender.table;
+    table.active = sender.on;
+    
+    if([table getType] == GPKGS_TT_FEATURE_OVERLAY){
+        [self.active removeTable:table];
+        [self.active addTable:table];
+    }else{
+        if(table.active){
+            [self.active addTable:table];
+        }else{
+            [self.active removeTable:table andPreserveOverlays:true];
+        }
+    }
+    //[self updateClearActiveButton];
+}
+
 
 - (void) setDatabase:(GPKGSDatabase *)database {
     GPKGGeoPackageManager *manager = [GPKGGeoPackageFactory getManager];

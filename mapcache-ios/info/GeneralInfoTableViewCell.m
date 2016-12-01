@@ -25,7 +25,6 @@
 
 - (void) setupCellWithGeoPackage: (GPKGGeoPackage *) geoPackage {
     self.nameLabel.text = geoPackage.name;
-    self.sizeLabel.text = @"2.3MB";
     
     NSArray *tileLayers = [geoPackage getTileTables];
     NSUInteger tileLayerCount = tileLayers.count;

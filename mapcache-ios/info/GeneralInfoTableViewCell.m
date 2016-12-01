@@ -7,6 +7,8 @@
 //
 
 #import "GeneralInfoTableViewCell.h"
+#import "GPKGGeoPackageManager.h"
+#import "GPKGGeoPackageFactory.h"
 
 @implementation GeneralInfoTableViewCell
 
@@ -37,6 +39,9 @@
     if (featureLayerCount == 0) {
         [self.featureLayersLabel setHidden:YES];
     }
+    
+    GPKGGeoPackageManager *manager = [GPKGGeoPackageFactory getManager];
+    self.sizeLabel.text = [manager readableSize:geoPackage.name];
     
     // create the overview image for the geopackage...
     

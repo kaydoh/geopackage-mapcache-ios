@@ -36,6 +36,7 @@
 #import "UIButton+GeoPackage.h"
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 #import "InfoTableViewController.h"
+#import "FeatureTableTableViewController.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -197,7 +198,7 @@ const char ConstantKey;
                 
                 GPKGSFeatureTable * table = [[GPKGSFeatureTable alloc] initWithDatabase:database andName:tableName andGeometryType:geometryType andCount:count];
                 [table setActive:[self.active exists:table]];
-                
+                [table setGeoPackage:geoPackage];
                 [tables addObject:table];
                 [theDatabase addFeature:table];
                 [dbCells addObject:table];
@@ -293,6 +294,9 @@ const char ConstantKey;
         [tableCell.tableName setText:table.name];
         [tableCell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
         [tableCell.active setTable:table];
+        GPKGFeatureDao * featureDao = [table.geoPackage getFeatureDaoWithTableName:table.name];
+        tableCell.dao = featureDao;
+        tableCell.table = table;
         tableCell.active.on = table.active;
     } else if ([cellObject isKindOfClass:[GPKGSTileTable class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TILE_TABLE forIndexPath:indexPath];
@@ -302,7 +306,7 @@ const char ConstantKey;
         [tableCell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
         [tableCell.active setTable:table];
         tableCell.active.on = table.active;
-    } else if (false){
+    } else if (false) {
         cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TABLE forIndexPath:indexPath];
         GPKGSTableCell * tableCell = (GPKGSTableCell *) cell;
         GPKGSTable * table = (GPKGSTable *) cellObject;
@@ -1254,6 +1258,12 @@ const char ConstantKey;
         NSLog(@"gp name %@", gp.name);
         InfoTableViewController *c = segue.destinationViewController;
         c.database = gp;
+    } else if ([segue.identifier isEqualToString:@"featureTableSegue"]) {
+        FeatureTableTableViewController *vc = (FeatureTableTableViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setTable:(GPKGSFeatureTable *)cell.table];
+        [vc setGeoPackage:cell.table.geoPackage];
+        [vc setDao:(GPKGFeatureDao *)cell.dao];
     }
     
 }

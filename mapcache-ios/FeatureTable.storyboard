@@ -11,10 +11,11 @@
         <scene sceneID="5XZ-zZ-vud">
             <objects>
                 <tableViewController title="Feature Table" id="fSp-CT-qwF" customClass="FeatureTableTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="P2P-XK-pQm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="P2P-XK-pQm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.18431372940540314" green="0.23921568691730499" blue="0.29411765933036804" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.18431372940540314" green="0.23921568691730499" blue="0.29411765933036804" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="z6Z-NS-PPr">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -42,7 +43,7 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gsy-HU-Jfm" id="U9L-EQ-epX">
-                                    <frame key="frameInset" width="328" height="43"/>
+                                    <frame key="frameInset" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Srs" translatesAutoresizingMaskIntoConstraints="NO" id="6RO-aH-Nu2">
@@ -76,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="144" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xQV-lX-rVw" id="XmQ-ea-xnt">
-                                    <frame key="frameInset" width="328" height="43"/>
+                                    <frame key="frameInset" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QFn-qn-MOd" customClass="GPKGSActiveTableSwitch">
@@ -153,6 +154,62 @@
                                 <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataColumnCell" rowHeight="118" id="xyo-lr-wZE" customClass="GPKGSTableCell">
+                                <rect key="frame" x="0.0" y="232" width="375" height="118"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="xyo-lr-wZE" id="ceN-LA-6Tq">
+                                    <frame key="frameInset" width="375" height="117"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="4" contentMode="left" text="Column Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68v-3C-sSf">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Type: Column Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0x-ap-aQi">
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="-1" contentMode="left" text="Data Column Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX1-1m-zOZ">
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="2" contentMode="left" text="Column Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iv-Fc-4PP">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="left" text="Type: Column Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hic-Db-D7h">
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="1iv-Fc-4PP" firstAttribute="top" secondItem="cX1-1m-zOZ" secondAttribute="bottom" constant="4" id="0c8-sE-GM3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="z0x-ap-aQi" secondAttribute="trailing" constant="-8" id="6ng-bB-8gn"/>
+                                        <constraint firstItem="68v-3C-sSf" firstAttribute="leading" secondItem="ceN-LA-6Tq" secondAttribute="leadingMargin" id="8Ym-UG-q6O"/>
+                                        <constraint firstItem="68v-3C-sSf" firstAttribute="top" secondItem="ceN-LA-6Tq" secondAttribute="topMargin" constant="-3" id="APF-6u-wKZ"/>
+                                        <constraint firstItem="1iv-Fc-4PP" firstAttribute="leading" secondItem="ceN-LA-6Tq" secondAttribute="leadingMargin" constant="8" id="D3L-Hu-LFT"/>
+                                        <constraint firstItem="Hic-Db-D7h" firstAttribute="top" secondItem="1iv-Fc-4PP" secondAttribute="bottom" constant="-1" id="UPf-zI-9kX"/>
+                                        <constraint firstItem="Hic-Db-D7h" firstAttribute="leading" secondItem="ceN-LA-6Tq" secondAttribute="leadingMargin" constant="8" id="bEY-sY-2UC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1iv-Fc-4PP" secondAttribute="trailing" constant="-8" id="dtv-Az-HZx"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cX1-1m-zOZ" secondAttribute="trailing" constant="-8" id="iqG-RQ-YHP"/>
+                                        <constraint firstItem="cX1-1m-zOZ" firstAttribute="leading" secondItem="ceN-LA-6Tq" secondAttribute="leadingMargin" id="jys-f8-rUw"/>
+                                        <constraint firstItem="cX1-1m-zOZ" firstAttribute="top" secondItem="z0x-ap-aQi" secondAttribute="bottom" constant="10" id="mfQ-Mm-gIs"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="68v-3C-sSf" secondAttribute="trailing" constant="-8" id="pwK-Gn-NxT"/>
+                                        <constraint firstItem="z0x-ap-aQi" firstAttribute="leading" secondItem="ceN-LA-6Tq" secondAttribute="leadingMargin" id="qhZ-qd-kg1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Hic-Db-D7h" secondAttribute="trailing" constant="-8" id="szs-yp-9fg"/>
+                                        <constraint firstItem="z0x-ap-aQi" firstAttribute="top" secondItem="68v-3C-sSf" secondAttribute="bottom" id="yPi-Ai-3xA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="fSp-CT-qwF" id="Dh2-Nf-Sci"/>
@@ -166,7 +223,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQf-fm-uDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47" y="132"/>
+            <point key="canvasLocation" x="45.600000000000001" y="131.78410794602701"/>
         </scene>
     </scenes>
     <resources>

@@ -15,8 +15,7 @@
 @interface FeatureTableTableViewController : UITableViewController
 
 @property (strong, nonatomic) GPKGSFeatureTable *table;
-@property (strong, nonatomic) GPKGSDatabase *database;
-@property (weak, nonatomic) GPKGGeoPackage *geoPackage;
+@property (strong, nonatomic) GPKGGeoPackage *geoPackage;
 @property (strong, nonatomic) GPKGFeatureDao *dao;
 
 @end

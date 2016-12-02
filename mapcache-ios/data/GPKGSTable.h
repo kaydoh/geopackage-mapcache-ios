@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GPKGSTableTypes.h"
+#import <GPKGGeoPackage.h>
 
 extern NSString * const GPKGS_TABLE_DATABASE;
 extern NSString * const GPKGS_TABLE_NAME;
@@ -20,6 +21,7 @@ extern NSString * const GPKGS_TABLE_ACTIVE;
 @property (nonatomic, strong) NSString *database;
 @property (nonatomic) int count;
 @property (nonatomic) BOOL active;
+@property (nonatomic, strong) GPKGGeoPackage *geoPackage;
 
 -(instancetype) initWithDatabase: (NSString *) database andName: (NSString *) name andCount: (int) count;
 

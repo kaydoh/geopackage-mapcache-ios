@@ -83,7 +83,7 @@
                         <color key="sectionIndexBackgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageFeatureTableCell" id="YQu-Gc-um6" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQu-Gc-um6" id="aXV-17-reX">
                                     <frame key="frameInset" width="328" height="43"/>
@@ -136,10 +136,11 @@
                                     <outlet property="active" destination="zjW-wE-yY9" id="so6-C3-DNr"/>
                                     <outlet property="count" destination="mr4-cI-pC2" id="07w-CB-lir"/>
                                     <outlet property="tableName" destination="28A-Ua-UVx" id="lYR-Fi-qkv"/>
+                                    <segue destination="reX-9J-MvA" kind="show" identifier="featureTableSegue" trigger="accessoryAction" id="hlV-eM-0ZB"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="jFa-li-gr1" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jFa-li-gr1" id="40y-bW-Pqa">
                                     <frame key="frameInset" width="328" height="43"/>
@@ -403,6 +404,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NhF-5h-2b6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1763" y="179"/>
+        </scene>
+        <!--FeatureTable-->
+        <scene sceneID="sJ2-vQ-Bfp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FeatureTable" id="reX-9J-MvA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQk-Am-3JF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1736" y="246"/>
         </scene>
         <!--Load Geo Package View Controller-->
         <scene sceneID="s29-ko-Fve">

@@ -11,6 +11,8 @@
 #import "GPKGSTableCell.h"
 #import "GPKGSConstants.h"
 #import <GPKGFeatureTable.h>
+#import <GPKGFeatureColumn.h>
+#import <GPKGDataColumnsDao.h>
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 
 @interface FeatureTableTableViewController ()
@@ -19,24 +21,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberOfFeaturesLabel;
 @property (weak, nonatomic) GPKGFeatureDao *featureDao;
 @property (weak, nonatomic) GPKGFeatureTable *featureTable;
+@property (strong, nonatomic) NSMutableDictionary *collapsedSections;
+@property (strong, nonatomic) GPKGDataColumnsDao *dcDao;
 
 @end
 
 @implementation FeatureTableTableViewController
-
-/*
-- (void) setGeoPackage:(GPKGGeoPackage *)geoPackage {
-    _geoPackage = geoPackage;
-    self.featureDao = [self.geoPackage getFeatureDaoWithTableName: self.table.name];
-    [self.featureDao initializeColumnIndex];
-}
- */
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.featureTableNameLabel.text = self.table.name;
     self.numberOfFeaturesLabel.text = [NSString stringWithFormat:@"%d Features", self.table.count];
     self.featureTable = [self.dao getFeatureTable];
+    self.collapsedSections = [[NSMutableDictionary alloc] init];
+    
+    self.dcDao = [self.geoPackage getDataColumnsDao];
 
 //    self.featureDao = [self.geoPackage getFeatureDaoWithTableName: self.table.name];
 //    [self.dao initializeColumnIndex];
@@ -60,22 +59,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    BOOL collpased = [(NSNumber *)[self.collapsedSections objectForKey:[NSNumber numberWithInteger:section]] boolValue];
+    if (collpased) return 0;
     if (section == 0 || section == 1) {
         return 1;
     } else {
-        
         return [self.featureTable columns].count;
     }
     return 0;
 }
 //return [self.tileTablesExpanded ? @"\u25bc " : @"\u25b6 " stringByAppendingString:@"Tile Tables"];
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    NSString *arrow = [(NSNumber *)[self.collapsedSections objectForKey:[NSNumber numberWithInteger:section]] boolValue] ? @"\u25b6 " : @"\u25bc ";
     if (section == 0) {
-        return @"Spatial Reference System";
+        return [arrow stringByAppendingString:@"Spatial Reference System"];
     } else if (section == 1) {
-        return @"Geometry Column";
+        return [arrow stringByAppendingString:@"Geometry Column"];
     } else if (section == 2) {
-        return @"Columns";
+        return [arrow stringByAppendingString:@"Columns"];
     }
     return nil;
 }
@@ -84,9 +86,7 @@
     return UITableViewAutomaticDimension;
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    //GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
-    
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {    
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
         UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *) view;
         [hfv.textLabel setTextColor:[UIColor colorWithRed:144.0f/256.0f green:201.0f/256.0f blue:216.0f/256.0f alpha:1.0f]];
@@ -111,20 +111,10 @@
 - (void) headerClicked: (UIGestureRecognizer *) sender {
     UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *)sender.view;
     NSNumber *section = (NSNumber *)hfv.data;
-    /*
-    if ([section isEqualToNumber:[NSNumber numberWithInt:1]]) {
-        self.tileTablesExpanded = !self.tileTablesExpanded;
-        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    if ([section isEqualToNumber:[NSNumber numberWithInt:2]]) {
-        self.featureTablesExpanded = !self.featureTablesExpanded;
-        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    if ([section isEqualToNumber:[NSNumber numberWithInt:3]]) {
-        self.spatialReferenceSystemsExpanded = !self.spatialReferenceSystemsExpanded;
-        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    */
+    BOOL collapsed = ![(NSNumber *)[self.collapsedSections objectForKey:section] boolValue];
+    
+    [self.collapsedSections setObject:[NSNumber numberWithBool:collapsed] forKey:section];
+    [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:[section longValue]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void) headerButtonClick: (UIButton *) button {
@@ -144,20 +134,43 @@
         return cell;
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ColumnCell" forIndexPath:indexPath];
-        cell.textLabel.text = @"geom column name";
-        cell.detailTextLabel.text = @"geom type";
+        GPKGFeatureColumn *gc = [self.featureTable getGeometryColumn];
+        cell.textLabel.text = gc.name;
+        cell.detailTextLabel.text = [GPKGDataTypes name:gc.dataType];
         return cell;
     } else if (indexPath.section == 2) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ColumnCell" forIndexPath:indexPath];
-        
         GPKGUserColumn *row = (GPKGUserColumn *)[[self.featureTable columns] objectAtIndex:indexPath.row];
-        cell.textLabel.text = row.name;
-        cell.detailTextLabel.text = [GPKGDataTypes name:[row dataType]];
-        return cell;
+        GPKGDataColumns *dc = [self.dcDao getDataColumnByTableName:self.table.name andColumnName:row.name];
+        
+        if (dc == nil) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ColumnCell" forIndexPath:indexPath];
+            cell.textLabel.text = row.name;
+            cell.detailTextLabel.text = [GPKGDataTypes name:[row dataType]];
+            return cell;
+        } else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DataColumnCell" forIndexPath:indexPath];
+            
+            ((UILabel *)[cell viewWithTag:4]).text = row.name;
+            ((UILabel *)[cell viewWithTag:1]).text = [GPKGDataTypes name:[row dataType]];
+            ((UILabel *)[cell viewWithTag:2]).text = dc.name;
+            ((UILabel *)[cell viewWithTag:3]).text = dc.theDescription;
+            return cell;
+        }
     }
     return nil;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section != 2) return UITableViewAutomaticDimension;
+    
+    GPKGUserColumn *row = (GPKGUserColumn *)[[self.featureTable columns] objectAtIndex:indexPath.row];
+    GPKGDataColumns *dc = [self.dcDao getDataColumnByTableName:self.table.name andColumnName:row.name];
+    
+    if (dc != nil) {
+        return 118.0f;
+    }
+    return UITableViewAutomaticDimension;
+}
 
 /*
 // Override to support conditional editing of the table view.

@@ -369,7 +369,6 @@
         FeatureTableTableViewController *vc = (FeatureTableTableViewController *)[segue destinationViewController];
         GPKGSTableCell *cell = (GPKGSTableCell *)sender;
         [vc setTable:(GPKGSFeatureTable *)cell.table];
-        [vc setDatabase:self.database];
         [vc setGeoPackage:self.geoPackage];
         [vc setDao:(GPKGFeatureDao *)cell.dao];
     }

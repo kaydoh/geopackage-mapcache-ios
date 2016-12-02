@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *featureTableNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfFeaturesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *geopackageNameLabel;
 @property (weak, nonatomic) GPKGFeatureDao *featureDao;
 @property (weak, nonatomic) GPKGFeatureTable *featureTable;
 @property (strong, nonatomic) NSMutableDictionary *collapsedSections;
@@ -30,8 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.featureTableNameLabel.text = self.table.name;
+    //self.title = [NSString stringWithFormat:@"%@ : %@", self.table.geoPackage.name, self.table.name];
+    self.title = @"Feature Table";
+    self.featureTableNameLabel.text = [NSString stringWithFormat:@"%@", self.table.name];
     self.numberOfFeaturesLabel.text = [NSString stringWithFormat:@"%d Features", self.table.count];
+    self.geopackageNameLabel.text = [NSString stringWithFormat:@"GeoPackage: %@", self.table.geoPackage.name];
+    
     self.featureTable = [self.dao getFeatureTable];
     self.collapsedSections = [[NSMutableDictionary alloc] init];
     
@@ -86,7 +91,7 @@
     return UITableViewAutomaticDimension;
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {    
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
         UITableViewHeaderFooterView *hfv = (UITableViewHeaderFooterView *) view;
         [hfv.textLabel setTextColor:[UIColor colorWithRed:144.0f/256.0f green:201.0f/256.0f blue:216.0f/256.0f alpha:1.0f]];

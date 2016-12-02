@@ -159,6 +159,7 @@
         
         GPKGSFeatureTable * table = [[GPKGSFeatureTable alloc] initWithDatabase:self.geoPackage.name andName:featureTableName andCount:count];
         [table setActive:[self.active exists:table]];
+        table.geoPackage = self.geoPackage;
         cell.table = table;
         cell.dao = featureDao;
         cell.active.table = table;

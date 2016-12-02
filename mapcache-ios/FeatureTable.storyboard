@@ -18,18 +18,23 @@
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.18431372940540314" green="0.23921568691730499" blue="0.29411765933036804" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="z6Z-NS-PPr">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Table Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdG-jp-eL6">
-                                    <frame key="frameInset" minX="8" minY="2" width="257" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tb-Pu-HFp">
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                     <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GeoPackage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdG-jp-eL6">
+                                    <frame key="frameInset" minX="8" minY="34" width="359" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.96862745289999996" green="0.84705883260000003" blue="0.61568629740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XXXX Features" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq4-Iy-32K">
-                                    <frame key="frameInset" minX="8" minY="26" width="257" height="14.5"/>
+                                    <frame key="frameInset" minX="8" minY="50" width="359" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.96862745289999996" green="0.84705883260000003" blue="0.61568629740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,10 +42,15 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.18431372939999999" green="0.2392156869" blue="0.2941176593" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="9Tb-Pu-HFp" firstAttribute="top" secondItem="z6Z-NS-PPr" secondAttribute="top" constant="8" id="6rV-gd-b4e"/>
+                                <constraint firstAttribute="trailing" secondItem="9Tb-Pu-HFp" secondAttribute="trailing" constant="8" id="7jl-Kg-RSf"/>
+                                <constraint firstItem="9Tb-Pu-HFp" firstAttribute="leading" secondItem="z6Z-NS-PPr" secondAttribute="leading" constant="8" id="j0g-C7-jyB"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="SpatialReferenceCell" id="Gsy-HU-Jfm" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gsy-HU-Jfm" id="U9L-EQ-epX">
                                     <frame key="frameInset" width="328" height="44"/>
@@ -74,7 +84,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="xQV-lX-rVw" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="144" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xQV-lX-rVw" id="XmQ-ea-xnt">
                                     <frame key="frameInset" width="328" height="44"/>
@@ -128,7 +138,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ColumnCell" textLabel="Vuq-Js-BLa" detailTextLabel="tDT-bu-axE" style="IBUITableViewCellStyleSubtitle" id="37A-gw-64W" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="188" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="37A-gw-64W" id="YS5-kO-ytb">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -155,7 +165,7 @@
                                 <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataColumnCell" rowHeight="118" id="xyo-lr-wZE" customClass="GPKGSTableCell">
-                                <rect key="frame" x="0.0" y="232" width="375" height="118"/>
+                                <rect key="frame" x="0.0" y="252" width="375" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="xyo-lr-wZE" id="ceN-LA-6Tq">
                                     <frame key="frameInset" width="375" height="117"/>
@@ -217,13 +227,14 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="featureTableNameLabel" destination="sdG-jp-eL6" id="dfF-fc-wQY"/>
+                        <outlet property="featureTableNameLabel" destination="9Tb-Pu-HFp" id="rST-CN-uOC"/>
+                        <outlet property="geopackageNameLabel" destination="sdG-jp-eL6" id="vEb-uV-vcr"/>
                         <outlet property="numberOfFeaturesLabel" destination="Hq4-Iy-32K" id="SNY-vR-k2C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQf-fm-uDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45.600000000000001" y="131.78410794602701"/>
+            <point key="canvasLocation" x="47.200000000000003" y="142.57871064467767"/>
         </scene>
     </scenes>
     <resources>

@@ -20,6 +20,7 @@
 #import <GPKGSpatialReferenceSystemDao.h>
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 #import "FeatureTableTableViewController.h"
+#import "TileTableTableViewController.h"
 
 @interface InfoTableViewController ()
 
@@ -142,7 +143,9 @@
         
         GPKGSTileTable * table = [[GPKGSTileTable alloc] initWithDatabase:self.geoPackage.name andName:tileTableName andCount:count];
         [table setActive:[self.active exists:table]];
+        table.geoPackage = self.geoPackage;
         cell.table = table;
+        cell.dao = tileDao;
         cell.active.table = table;
         cell.active.on = table.active;
         [cell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
@@ -372,7 +375,14 @@
         [vc setTable:(GPKGSFeatureTable *)cell.table];
         [vc setGeoPackage:self.geoPackage];
         [vc setDao:(GPKGFeatureDao *)cell.dao];
+    } else if ([segue.identifier isEqualToString:@"tileTableSegue"]) {
+        TileTableTableViewController *vc = (TileTableTableViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setTable:(GPKGSTileTable *)cell.table];
+        [vc setGeoPackage:self.geoPackage];
+        [vc setDao:(GPKGTileDao *)cell.dao];
     }
+    
     
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

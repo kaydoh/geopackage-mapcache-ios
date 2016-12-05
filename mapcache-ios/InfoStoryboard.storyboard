@@ -223,6 +223,7 @@
                                     <outlet property="active" destination="HJ7-bB-hMB" id="Ngb-re-Zv7"/>
                                     <outlet property="count" destination="Nhj-Ot-4Ga" id="orX-HT-vnW"/>
                                     <outlet property="tableName" destination="0kl-XH-5Rq" id="DSt-vL-x1K"/>
+                                    <segue destination="imb-Ed-50Y" kind="show" identifier="featureTableSegue" trigger="accessoryAction" id="8yS-Oj-Xq7"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="SpatialReferenceCell" id="Vd5-UX-k6p" customClass="GPKGSTableCell">
@@ -306,6 +307,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehb-dv-brD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="628" y="44"/>
+        </scene>
+        <!--TileTable-->
+        <scene sceneID="Ec3-h2-Eou">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TileTable" id="imb-Ed-50Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s2y-Sj-t42" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603" y="205"/>
         </scene>
     </scenes>
     <resources>

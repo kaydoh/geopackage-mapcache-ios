@@ -77,6 +77,8 @@
 		F79C28B71DF0848400CF86B6 /* FeatureTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F79C28B61DF0848400CF86B6 /* FeatureTable.storyboard */; };
 		F79C28BA1DF087EE00CF86B6 /* FeatureTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C28B91DF087EE00CF86B6 /* FeatureTableTableViewController.m */; };
 		F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */; };
+		F7BA2FD11DF5C0C000EA5FC7 /* TileTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */; };
+		F7BA2FD41DF5C0FA00EA5FC7 /* TileTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BA2FD31DF5C0FA00EA5FC7 /* TileTableTableViewController.m */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
 		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
 		F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */; };
@@ -232,6 +234,9 @@
 		F79C28B91DF087EE00CF86B6 /* FeatureTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeatureTableTableViewController.m; path = features/FeatureTableTableViewController.m; sourceTree = "<group>"; };
 		F7A037E11DE4A95B00DD8BE2 /* LoadGeoPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGeoPackageViewController.h; sourceTree = "<group>"; };
 		F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGeoPackageViewController.m; sourceTree = "<group>"; };
+		F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TileTable.storyboard; sourceTree = "<group>"; };
+		F7BA2FD21DF5C0FA00EA5FC7 /* TileTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileTableTableViewController.h; path = tiles/TileTableTableViewController.h; sourceTree = "<group>"; };
+		F7BA2FD31DF5C0FA00EA5FC7 /* TileTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileTableTableViewController.m; path = tiles/TileTableTableViewController.m; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
 		F7E8E4E01DDE337600CD9BF5 /* UIButton+GeoPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GeoPackage.h"; sourceTree = "<group>"; };
 		F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GeoPackage.m"; sourceTree = "<group>"; };
@@ -302,6 +307,8 @@
 				F79C28AD1DE60F1E00CF86B6 /* InfoStoryboard.storyboard */,
 				F79C28B61DF0848400CF86B6 /* FeatureTable.storyboard */,
 				F79C28BB1DF0880400CF86B6 /* features */,
+				F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */,
+				F7BA2FD51DF5C0FF00EA5FC7 /* tiles */,
 			);
 			path = "mapcache-ios";
 			sourceTree = "<group>";
@@ -528,6 +535,15 @@
 			name = features;
 			sourceTree = "<group>";
 		};
+		F7BA2FD51DF5C0FF00EA5FC7 /* tiles */ = {
+			isa = PBXGroup;
+			children = (
+				F7BA2FD21DF5C0FA00EA5FC7 /* TileTableTableViewController.h */,
+				F7BA2FD31DF5C0FA00EA5FC7 /* TileTableTableViewController.m */,
+			);
+			name = tiles;
+			sourceTree = "<group>";
+		};
 		F92DE52400ADCEC8CC3BBB88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047733C61B4C3E3400E523BD /* mapcache.plist in Resources */,
+				F7BA2FD11DF5C0C000EA5FC7 /* TileTable.storyboard in Resources */,
 				040136811AF94FB200C92AFC /* Main.storyboard in Resources */,
 				F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */,
 				F79C28B71DF0848400CF86B6 /* FeatureTable.storyboard in Resources */,
@@ -702,6 +719,7 @@
 				045C94941B56DF620005CCD0 /* GPKGSIndexerTask.m in Sources */,
 				047733C91B4C496600E523BD /* GPKGSTableOptionsButton.m in Sources */,
 				04E1D8DF1B682D0F002BD947 /* GPKGSFeatureTilesDrawData.m in Sources */,
+				F7BA2FD41DF5C0FA00EA5FC7 /* TileTableTableViewController.m in Sources */,
 				F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */,
 				043A459E1B84AA5D001B8FC5 /* GPKGSMapPointDataTypes.m in Sources */,
 				044647FC1B4AD1C00052913B /* GPKGSManagerViewController.m in Sources */,

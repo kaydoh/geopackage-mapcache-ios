@@ -37,6 +37,7 @@
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 #import "InfoTableViewController.h"
 #import "FeatureTableTableViewController.h"
+#import "TileTableTableViewController.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -213,6 +214,7 @@ const char ConstantKey;
                 
                 GPKGSTileTable * table = [[GPKGSTileTable alloc] initWithDatabase:database andName:tableName andCount:count];
                 [table setActive:[self.active exists:table]];
+                [table setGeoPackage:geoPackage];
                 
                 [tables addObject:table];
                 [theDatabase addTile:table];
@@ -305,6 +307,9 @@ const char ConstantKey;
         [tableCell.tableName setText:table.name];
         [tableCell.count setText:[NSString stringWithFormat:@"(%d)", table.count]];
         [tableCell.active setTable:table];
+        GPKGTileDao *tileDao = [table.geoPackage getTileDaoWithTableName:table.name];
+        tableCell.dao = tileDao;
+        tableCell.table = table;
         tableCell.active.on = table.active;
     } else if (false) {
         cell = [tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_TABLE forIndexPath:indexPath];
@@ -1264,6 +1269,12 @@ const char ConstantKey;
         [vc setTable:(GPKGSFeatureTable *)cell.table];
         [vc setGeoPackage:cell.table.geoPackage];
         [vc setDao:(GPKGFeatureDao *)cell.dao];
+    } else if ([segue.identifier isEqualToString:@"tileTableSegue"]) {
+        TileTableTableViewController *vc = (TileTableTableViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setTable:(GPKGSTileTable *)cell.table];
+        [vc setGeoPackage:cell.table.geoPackage];
+        [vc setDao:(GPKGTileDao *)cell.dao];
     }
     
 }

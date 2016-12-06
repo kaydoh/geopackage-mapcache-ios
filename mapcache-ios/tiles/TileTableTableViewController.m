@@ -11,11 +11,17 @@
 #import "GPKGSTableCell.h"
 #import "GPKGSConstants.h"
 #import <GPKGDataColumnsDao.h>
+#import <GPKGProjectionTransform.h>
+#import <GPKGProjectionConstants.h>
 
 @interface TileTableTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tableNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *geoPackageNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tileCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minZoomLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxZoomLabel;
+@property (weak, nonatomic) IBOutlet UILabel *xBoundsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yBoundsLabel;
 
 @property (strong, nonatomic) GPKGDataColumnsDao *dcDao;
 @property (strong, nonatomic) NSMutableDictionary *collapsedSections;
@@ -29,20 +35,21 @@
     
     self.title = @"Tile Table";
     self.tableNameLabel.text = [NSString stringWithFormat:@"%@", self.table.name];
-    // get the count by iterating throught the zoom levels
-    //self.tileCountLabel.text = [NSString stringWithFormat:@"%d Tiles", self.dao];
     self.geoPackageNameLabel.text = [NSString stringWithFormat:@"GeoPackage: %@", self.geoPackage.name];
     
-    //self.table = [self.dao getTileTable];
+    self.minZoomLabel.text = [NSString stringWithFormat: @"Min Zoom: %d", self.dao.minZoom];
+    self.maxZoomLabel.text = [NSString stringWithFormat: @"Max Zoom: %d", self.dao.maxZoom];
+    self.tileCountLabel.text = [NSString stringWithFormat:@"%d Tiles", [self.table count]];
+    
+    GPKGProjectionTransform * projectionToWebMercator = [[GPKGProjectionTransform alloc] initWithFromProjection:self.dao.projection andToEpsg:PROJ_EPSG_WORLD_GEODETIC_SYSTEM];
+    
+    GPKGBoundingBox *box = [self.dao.tileMatrixSet getBoundingBox];
+    GPKGBoundingBox *espg4326box = [projectionToWebMercator transformWithBoundingBox:box];
+    self.xBoundsLabel.text = [NSString stringWithFormat:@"Longitude: %@ to %@", espg4326box.minLongitude, espg4326box.maxLongitude];
+    self.yBoundsLabel.text = [NSString stringWithFormat:@"Latitude: %.2f to %.2f", [espg4326box.minLatitude doubleValue], [espg4326box.maxLatitude doubleValue]];
+    
     self.collapsedSections = [[NSMutableDictionary alloc] init];
-    
     self.dcDao = [self.geoPackage getDataColumnsDao];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

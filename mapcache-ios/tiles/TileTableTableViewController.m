@@ -45,7 +45,7 @@
     
     GPKGBoundingBox *box = [self.dao.tileMatrixSet getBoundingBox];
     GPKGBoundingBox *espg4326box = [projectionToWebMercator transformWithBoundingBox:box];
-    self.xBoundsLabel.text = [NSString stringWithFormat:@"Longitude: %@ to %@", espg4326box.minLongitude, espg4326box.maxLongitude];
+    self.xBoundsLabel.text = [NSString stringWithFormat:@"Longitude: %.2f to %.2f", [espg4326box.minLongitude doubleValue], [espg4326box.maxLongitude doubleValue]];
     self.yBoundsLabel.text = [NSString stringWithFormat:@"Latitude: %.2f to %.2f", [espg4326box.minLatitude doubleValue], [espg4326box.maxLatitude doubleValue]];
     
     self.collapsedSections = [[NSMutableDictionary alloc] init];

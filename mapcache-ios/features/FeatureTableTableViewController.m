@@ -14,6 +14,7 @@
 #import <GPKGFeatureColumn.h>
 #import <GPKGDataColumnsDao.h>
 #import "UITableViewHeaderFooterView+GeoPackage.h"
+#import "SrsViewController.h"
 
 @interface FeatureTableTableViewController ()
 
@@ -124,7 +125,7 @@
         
         NSNumber *srsId = self.dao.geometryColumns.srsId;
         GPKGSpatialReferenceSystem *srs = (GPKGSpatialReferenceSystem *)[[self.geoPackage getSpatialReferenceSystemDao] queryForIdObject:srsId];
-                
+        cell.srs = srs;
         cell.tableName.text = [NSString stringWithFormat:@"%@ %@", srs.srsName, srs.srsId];
         return cell;
     } else if (indexPath.section == 1) {
@@ -201,14 +202,16 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"srsTableSegue"]) {
+        SrsViewController *vc = (SrsViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setSrs:cell.srs];
+    }
 }
-*/
+
 
 @end

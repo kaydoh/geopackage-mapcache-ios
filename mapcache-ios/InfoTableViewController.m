@@ -21,6 +21,7 @@
 #import "UITableViewHeaderFooterView+GeoPackage.h"
 #import "FeatureTableTableViewController.h"
 #import "TileTableTableViewController.h"
+#import "SrsViewController.h"
 
 @interface InfoTableViewController ()
 
@@ -173,7 +174,7 @@
     } else if (indexPath.section == 3) {
         GPKGSTableCell *cell = (GPKGSTableCell *)[tableView dequeueReusableCellWithIdentifier:GPKGS_CELL_SRS forIndexPath:indexPath];
         GPKGSpatialReferenceSystem *srs = [self.spatialReferenceSystems objectAtIndex:indexPath.row];
-        
+        cell.srs = srs;
         cell.tableName.text = [NSString stringWithFormat:@"%@ %@", srs.srsName, srs.srsId];
         
         return cell;
@@ -381,11 +382,11 @@
         [vc setTable:(GPKGSTileTable *)cell.table];
         [vc setGeoPackage:self.geoPackage];
         [vc setDao:(GPKGTileDao *)cell.dao];
+    } else if ([segue.identifier isEqualToString:@"srsTableSegue"]) {
+        SrsViewController *vc = (SrsViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setSrs:cell.srs];
     }
-    
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 

@@ -13,6 +13,7 @@
 #import <GPKGDataColumnsDao.h>
 #import <GPKGProjectionTransform.h>
 #import <GPKGProjectionConstants.h>
+#import "SrsViewController.h"
 
 @interface TileTableTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tableNameLabel;
@@ -83,7 +84,7 @@
         
         NSNumber *srsId = self.dao.tileMatrixSet.srsId;
         GPKGSpatialReferenceSystem *srs = (GPKGSpatialReferenceSystem *)[[self.geoPackage getSpatialReferenceSystemDao] queryForIdObject:srsId];
-        
+        cell.srs = srs;
         cell.tableName.text = [NSString stringWithFormat:@"%@ %@", srs.srsName, srs.srsId];
         return cell;
     } else if (indexPath.section == 1) {
@@ -208,14 +209,17 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"srsTableSegue"]) {
+        SrsViewController *vc = (SrsViewController *)[segue destinationViewController];
+        GPKGSTableCell *cell = (GPKGSTableCell *)sender;
+        [vc setSrs:cell.srs];
+    }
 }
-*/
+
 
 @end

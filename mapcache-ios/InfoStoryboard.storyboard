@@ -258,6 +258,7 @@
                                 <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="tableName" destination="Ayc-Gq-BxX" id="IA5-mf-yIB"/>
+                                    <segue destination="aZn-Hb-PpQ" kind="show" identifier="srsTableSegue" trigger="accessoryAction" id="uCV-4C-KtJ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rPW-K5-gQV">
@@ -315,6 +316,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2y-Sj-t42" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="603" y="205"/>
+        </scene>
+        <!--SrsTable-->
+        <scene sceneID="UbV-gJ-t6V">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SrsTable" id="aZn-Hb-PpQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-tZ-T2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624" y="343"/>
         </scene>
     </scenes>
     <resources>

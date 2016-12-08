@@ -81,6 +81,7 @@
                                 <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="tableName" destination="s6F-EW-vnH" id="7ln-Ec-bCo"/>
+                                    <segue destination="I68-hc-rBO" kind="show" identifier="srsTableSegue" trigger="accessoryAction" id="1NC-eb-lWu"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="xQV-lX-rVw" customClass="GPKGSTableCell">
@@ -235,6 +236,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQf-fm-uDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="47.200000000000003" y="142.57871064467767"/>
+        </scene>
+        <!--SrsTable-->
+        <scene sceneID="lao-sj-4n9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SrsTable" id="I68-hc-rBO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aNY-eI-AWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="142"/>
         </scene>
     </scenes>
     <resources>

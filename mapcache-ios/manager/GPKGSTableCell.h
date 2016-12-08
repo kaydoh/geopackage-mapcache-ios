@@ -12,6 +12,7 @@
 #import "GPKGSTable.h"
 #import <GPKGBaseDao.h>
 #import <GPKGGeoPackage.h>
+#import <GPKGSpatialReferenceSystem.h>
 
 @interface GPKGSTableCell : UITableViewCell
 
@@ -23,5 +24,6 @@
 @property (strong, nonatomic) GPKGSTable *table;
 @property (strong, nonatomic) GPKGBaseDao *dao;
 @property (strong, nonatomic) GPKGGeoPackage *geoPackage;
+@property (strong, nonatomic) GPKGSpatialReferenceSystem *srs;
 
 @end

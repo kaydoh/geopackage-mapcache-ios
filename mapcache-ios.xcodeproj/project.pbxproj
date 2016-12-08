@@ -79,6 +79,8 @@
 		F7A037E31DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A037E21DE4A95B00DD8BE2 /* LoadGeoPackageViewController.m */; };
 		F7BA2FD11DF5C0C000EA5FC7 /* TileTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */; };
 		F7BA2FD41DF5C0FA00EA5FC7 /* TileTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BA2FD31DF5C0FA00EA5FC7 /* TileTableTableViewController.m */; };
+		F7BA2FD91DF86ABE00EA5FC7 /* SrsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BA2FD81DF86ABE00EA5FC7 /* SrsViewController.m */; };
+		F7BA2FDB1DF86C0700EA5FC7 /* SrsTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BA2FDA1DF86C0700EA5FC7 /* SrsTable.storyboard */; };
 		F7E8E4D91DDB7B7700CD9BF5 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */; };
 		F7E8E4E21DDE337600CD9BF5 /* UIButton+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */; };
 		F7E8E4E51DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E4E41DDFAF5900CD9BF5 /* UITableViewHeaderFooterView+GeoPackage.m */; };
@@ -237,6 +239,9 @@
 		F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TileTable.storyboard; sourceTree = "<group>"; };
 		F7BA2FD21DF5C0FA00EA5FC7 /* TileTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileTableTableViewController.h; path = tiles/TileTableTableViewController.h; sourceTree = "<group>"; };
 		F7BA2FD31DF5C0FA00EA5FC7 /* TileTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileTableTableViewController.m; path = tiles/TileTableTableViewController.m; sourceTree = "<group>"; };
+		F7BA2FD71DF86ABE00EA5FC7 /* SrsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SrsViewController.h; path = srs/SrsViewController.h; sourceTree = "<group>"; };
+		F7BA2FD81DF86ABE00EA5FC7 /* SrsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SrsViewController.m; path = srs/SrsViewController.m; sourceTree = "<group>"; };
+		F7BA2FDA1DF86C0700EA5FC7 /* SrsTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SrsTable.storyboard; sourceTree = "<group>"; };
 		F7E8E4D81DDB7B7700CD9BF5 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
 		F7E8E4E01DDE337600CD9BF5 /* UIButton+GeoPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GeoPackage.h"; sourceTree = "<group>"; };
 		F7E8E4E11DDE337600CD9BF5 /* UIButton+GeoPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GeoPackage.m"; sourceTree = "<group>"; };
@@ -288,6 +293,7 @@
 		040136711AF94FB200C92AFC /* mapcache-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F7BA2FD61DF869CF00EA5FC7 /* srs */,
 				F79C28AF1DE61D6C00CF86B6 /* info */,
 				044D6B481B627AB400527745 /* load */,
 				045C949C1B5D89E80005CCD0 /* ui */,
@@ -309,6 +315,7 @@
 				F79C28BB1DF0880400CF86B6 /* features */,
 				F7BA2FD01DF5C0C000EA5FC7 /* TileTable.storyboard */,
 				F7BA2FD51DF5C0FF00EA5FC7 /* tiles */,
+				F7BA2FDA1DF86C0700EA5FC7 /* SrsTable.storyboard */,
 			);
 			path = "mapcache-ios";
 			sourceTree = "<group>";
@@ -544,6 +551,15 @@
 			name = tiles;
 			sourceTree = "<group>";
 		};
+		F7BA2FD61DF869CF00EA5FC7 /* srs */ = {
+			isa = PBXGroup;
+			children = (
+				F7BA2FD71DF86ABE00EA5FC7 /* SrsViewController.h */,
+				F7BA2FD81DF86ABE00EA5FC7 /* SrsViewController.m */,
+			);
+			name = srs;
+			sourceTree = "<group>";
+		};
 		F92DE52400ADCEC8CC3BBB88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +662,7 @@
 				040136861AF94FB200C92AFC /* LaunchScreen.xib in Resources */,
 				040136831AF94FB200C92AFC /* Images.xcassets in Resources */,
 				F79C28AE1DE60F1E00CF86B6 /* InfoStoryboard.storyboard in Resources */,
+				F7BA2FDB1DF86C0700EA5FC7 /* SrsTable.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +765,7 @@
 				044647FF1B4AF3870052913B /* GPKGSTable.m in Sources */,
 				04CCC85F1B60225C0001296D /* GPKGSKeyboardConstraint.m in Sources */,
 				040136781AF94FB200C92AFC /* AppDelegate.m in Sources */,
+				F7BA2FD91DF86ABE00EA5FC7 /* SrsViewController.m in Sources */,
 				F79C28B21DE61D8B00CF86B6 /* InfoTableViewController.m in Sources */,
 				04E1D8D01B66D366002BD947 /* GPKGSEditContentsViewController.m in Sources */,
 				044648021B4AF4250052913B /* GPKGSTableTypes.m in Sources */,

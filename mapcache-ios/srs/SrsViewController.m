@@ -76,7 +76,7 @@
         
         
     }
-    
+    [formattedDefinition deleteCharactersInRange:NSMakeRange(0, 1)];
     if ([formattedDefinition hasSuffix:@", "]) {
         [formattedDefinition deleteCharactersInRange:NSMakeRange([formattedDefinition length]-2, 2)];
     }

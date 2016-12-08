@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MoB-I4-bFY">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--GeoPackages-->
+        <scene sceneID="JXs-C3-Byd">
+            <objects>
+                <tableViewController id="MoB-I4-bFY" customClass="GPKGSManagerViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ev6-q8-CP4">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageFeatureTableCell" id="wzA-X5-zdY" customClass="GPKGSTableCell">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wzA-X5-zdY" id="1im-Jv-YCp">
+                                    <frame key="frameInset" width="328" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiw-Xy-NIr">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="42" id="f4z-36-SXv"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ah-YW-96L" customClass="GPKGSActiveTableSwitch">
+                                            <color key="onTintColor" red="0.031372549020000001" green="0.56470588239999997" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="tableActiveChanged:" destination="MoB-I4-bFY" eventType="valueChanged" id="Spu-Xh-Xt8"/>
+                                            </connections>
+                                        </switch>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeatureTable" translatesAutoresizingMaskIntoConstraints="NO" id="Yoy-kf-TiB">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="29" id="2rm-AE-SAf"/>
+                                                <constraint firstAttribute="height" constant="29" id="PQw-Wa-KgQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feature layer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcu-Re-oMI">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jiw-Xy-NIr" firstAttribute="top" secondItem="1im-Jv-YCp" secondAttribute="topMargin" constant="3" id="108-ge-4ng"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5Ah-YW-96L" secondAttribute="bottom" constant="-2" id="42Z-Zh-mbQ"/>
+                                        <constraint firstItem="Yoy-kf-TiB" firstAttribute="leading" secondItem="5Ah-YW-96L" secondAttribute="trailing" constant="8" id="HcJ-6b-82R"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="5Ah-YW-96L" secondAttribute="leading" id="MjS-Bd-sMx"/>
+                                        <constraint firstItem="5Ah-YW-96L" firstAttribute="top" secondItem="1im-Jv-YCp" secondAttribute="topMargin" constant="-2" id="XDz-Oc-kGc"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tcu-Re-oMI" secondAttribute="trailing" constant="11" id="bh5-VU-PJe"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jiw-Xy-NIr" secondAttribute="trailing" constant="-8" id="bo3-K4-i3Q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="jiw-Xy-NIr" secondAttribute="bottom" constant="3" id="fe3-rO-K1c"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="tcu-Re-oMI" secondAttribute="bottom" constant="3" id="hML-zc-DIy"/>
+                                        <constraint firstItem="tcu-Re-oMI" firstAttribute="top" secondItem="1im-Jv-YCp" secondAttribute="topMargin" constant="3" id="qYn-ds-Tp6"/>
+                                        <constraint firstItem="tcu-Re-oMI" firstAttribute="leading" secondItem="Yoy-kf-TiB" secondAttribute="trailing" constant="10" id="r47-9g-osc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Yoy-kf-TiB" secondAttribute="bottom" id="zvA-kz-GjC"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="active" destination="5Ah-YW-96L" id="edF-7w-f8G"/>
+                                    <outlet property="count" destination="jiw-Xy-NIr" id="uNs-xj-trq"/>
+                                    <outlet property="tableName" destination="tcu-Re-oMI" id="lMM-oZ-zER"/>
+                                    <segue destination="UeP-QI-WMu" kind="show" identifier="featureTableSegue" trigger="accessoryAction" id="ydJ-xP-0hI"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="GeoPackageTileTableCell" id="Bgm-0c-hg1" customClass="GPKGSTableCell">
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bgm-0c-hg1" id="MKT-yv-xrj">
+                                    <frame key="frameInset" width="328" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LBD-6b-vjJ" customClass="GPKGSActiveTableSwitch">
+                                            <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="onTintColor" red="0.031372549020000001" green="0.56470588239999997" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="tableActiveChanged:" destination="MoB-I4-bFY" eventType="valueChanged" id="14Q-tP-soO"/>
+                                            </connections>
+                                        </switch>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileTable" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-LB-7ay">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="29" id="n9p-Is-Qs6"/>
+                                                <constraint firstAttribute="width" constant="29" id="yeT-Yd-MR5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tile layer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jj1-mC-ERr">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OR9-QY-YB6">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="42" id="yRQ-eJ-h1n"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="XlK-LB-7ay" firstAttribute="leading" secondItem="LBD-6b-vjJ" secondAttribute="trailing" constant="8" id="485-Y2-p0v"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="OR9-QY-YB6" secondAttribute="bottom" constant="3" id="76Y-y7-woY"/>
+                                        <constraint firstItem="jj1-mC-ERr" firstAttribute="leading" secondItem="XlK-LB-7ay" secondAttribute="trailing" constant="11" id="7nI-ef-OgA"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="jj1-mC-ERr" secondAttribute="bottom" constant="3" id="WOR-VG-xG5"/>
+                                        <constraint firstItem="LBD-6b-vjJ" firstAttribute="top" secondItem="MKT-yv-xrj" secondAttribute="topMargin" constant="-2" id="XxW-VB-eIh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="OR9-QY-YB6" secondAttribute="trailing" constant="-8" id="Z27-JO-tUo"/>
+                                        <constraint firstItem="jj1-mC-ERr" firstAttribute="top" secondItem="MKT-yv-xrj" secondAttribute="topMargin" constant="3" id="geu-Rj-8RL"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jj1-mC-ERr" secondAttribute="trailing" constant="10" id="hGp-oa-drF"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="XlK-LB-7ay" secondAttribute="bottom" id="pac-18-Vj3"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="LBD-6b-vjJ" secondAttribute="leading" id="tgQ-e7-rej"/>
+                                        <constraint firstItem="OR9-QY-YB6" firstAttribute="top" secondItem="MKT-yv-xrj" secondAttribute="topMargin" constant="3" id="zGt-zo-Dk6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="active" destination="LBD-6b-vjJ" id="IbU-eU-Yvz"/>
+                                    <outlet property="count" destination="OR9-QY-YB6" id="ZDz-KN-FBH"/>
+                                    <outlet property="tableName" destination="jj1-mC-ERr" id="bLC-dS-6Cm"/>
+                                    <segue destination="ygf-5w-jes" kind="show" identifier="featureTableSegue" trigger="accessoryAction" id="Hyv-7E-yoI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MoB-I4-bFY" id="clJ-Ol-46T"/>
+                            <outlet property="delegate" destination="MoB-I4-bFY" id="tzw-Gf-jNo"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="GeoPackages" image="Manager" id="f6O-c9-qio"/>
+                    <navigationItem key="navigationItem" title="GeoPackages" id="dFT-Yz-ghs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1Us-oi-Lg7">
+                            <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="HVf-Xo-4He" kind="show" id="fi0-iY-COM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="IM1-jt-eOF" kind="show" identifier="showGeoPackageInfo" id="aDV-bn-C6p"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Ow-QI-Xie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="-235.23238380809596"/>
+        </scene>
+        <!--LoadGeoPackage-->
+        <scene sceneID="WyA-OC-8hb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LoadGeoPackage" id="HVf-Xo-4He" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MN3-lc-42V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="-390"/>
+        </scene>
+        <!--InfoStoryboard-->
+        <scene sceneID="YxA-ux-5Q0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoStoryboard" id="IM1-jt-eOF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3op-V4-aAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746" y="-291"/>
+        </scene>
+        <!--FeatureTable-->
+        <scene sceneID="iNQ-AK-jpO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FeatureTable" id="UeP-QI-WMu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UFW-pl-lNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1734" y="-187"/>
+        </scene>
+        <!--TileTable-->
+        <scene sceneID="0fz-ha-44J">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TileTable" id="ygf-5w-jes" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mmZ-C1-LiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1715" y="-88"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="FeatureTable" width="29" height="29"/>
+        <image name="Manager" width="32" height="32"/>
+        <image name="TileTable" width="29" height="29"/>
+    </resources>
+</document>

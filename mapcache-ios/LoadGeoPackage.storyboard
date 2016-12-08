@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EDg-d3-oFo">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Load GeoPackage-->
+        <scene sceneID="KTv-qG-7jb">
+            <objects>
+                <viewController title="Load GeoPackage" id="EDg-d3-oFo" customClass="GPKGSDownloadFileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="65B-BI-qvR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hpz-Zn-JaG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XAf-3D-Mo4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4Q-A7-krf">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grG-D9-9je">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download From URL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tc0-X9-Qph">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GeoPackage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy2-rs-AQK">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPM-qp-Leu">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjB-v0-t5z">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="Create A New GeoPackage">
+                                                    <color key="titleColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAB-32-ita">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load An Example GeoPackage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vo-t5-wvS">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dsi-H2-e4N">
+                                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="example-gp-cell" textLabel="gH9-Bq-lF6" detailTextLabel="50o-uu-bgi" style="IBUITableViewCellStyleSubtitle" id="454-wU-rcG">
+                                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="454-wU-rcG" id="gmk-Zs-5pM">
+                                                            <frame key="frameInset" width="336" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gH9-Bq-lF6">
+                                                                    <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                                    <color key="textColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="50o-uu-bgi">
+                                                                    <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.18431372939999999" green="0.2392156869" blue="0.2941176593" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </tableViewCellContentView>
+                                                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="EDg-d3-oFo" id="JqA-Ka-1Og"/>
+                                                    <outlet property="delegate" destination="EDg-d3-oFo" id="cBu-Kt-JfB"/>
+                                                </connections>
+                                            </tableView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WZ-5q-op4">
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZS-fp-7hG">
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfD-RR-mOT">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.90980392160000001" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="zPM-qp-Leu" firstAttribute="top" secondItem="4WZ-5q-op4" secondAttribute="bottom" constant="8" id="7Oc-OK-gki"/>
+                                            <constraint firstAttribute="trailing" secondItem="pZS-fp-7hG" secondAttribute="trailing" constant="16" id="9QI-wn-ARo"/>
+                                            <constraint firstItem="JjB-v0-t5z" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="CrK-hc-5NZ"/>
+                                            <constraint firstItem="JjB-v0-t5z" firstAttribute="top" secondItem="MfD-RR-mOT" secondAttribute="bottom" constant="8" id="Ej6-Bs-ehR"/>
+                                            <constraint firstItem="vAB-32-ita" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="GE3-jb-CLg"/>
+                                            <constraint firstItem="6Vo-t5-wvS" firstAttribute="top" secondItem="vAB-32-ita" secondAttribute="bottom" constant="4" id="INX-nT-yVc"/>
+                                            <constraint firstAttribute="height" constant="554" id="JQ2-nA-ERu"/>
+                                            <constraint firstItem="6Vo-t5-wvS" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="O9c-vb-5hW"/>
+                                            <constraint firstAttribute="trailing" secondItem="vAB-32-ita" secondAttribute="trailing" constant="16" id="OlX-oo-RHP"/>
+                                            <constraint firstItem="dsi-H2-e4N" firstAttribute="top" secondItem="6Vo-t5-wvS" secondAttribute="bottom" constant="8" id="PM6-zv-eRn"/>
+                                            <constraint firstAttribute="trailing" secondItem="vy2-rs-AQK" secondAttribute="trailing" constant="16" id="Pfi-do-1ww"/>
+                                            <constraint firstItem="vAB-32-ita" firstAttribute="top" secondItem="JjB-v0-t5z" secondAttribute="bottom" constant="8" id="QiS-sk-kJi"/>
+                                            <constraint firstAttribute="bottom" secondItem="dsi-H2-e4N" secondAttribute="bottom" constant="8" id="W9W-a4-C9d"/>
+                                            <constraint firstAttribute="trailing" secondItem="MfD-RR-mOT" secondAttribute="trailing" constant="16" id="Yka-10-oeg"/>
+                                            <constraint firstItem="4WZ-5q-op4" firstAttribute="top" secondItem="vy2-rs-AQK" secondAttribute="bottom" constant="8" id="aOa-36-hjn"/>
+                                            <constraint firstItem="pZS-fp-7hG" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="ajK-j2-X65"/>
+                                            <constraint firstAttribute="trailing" secondItem="zPM-qp-Leu" secondAttribute="trailing" constant="16" id="bJB-I9-QPL"/>
+                                            <constraint firstItem="zPM-qp-Leu" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="bZF-RR-v92"/>
+                                            <constraint firstAttribute="trailing" secondItem="dsi-H2-e4N" secondAttribute="trailing" id="cqn-xq-SNn"/>
+                                            <constraint firstItem="dsi-H2-e4N" firstAttribute="top" secondItem="grG-D9-9je" secondAttribute="top" constant="295" id="dWp-rO-rEL"/>
+                                            <constraint firstItem="dsi-H2-e4N" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" id="dqG-i2-Ec6"/>
+                                            <constraint firstAttribute="trailing" secondItem="4WZ-5q-op4" secondAttribute="trailing" constant="16" id="evO-mu-dhh"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Vo-t5-wvS" secondAttribute="trailing" constant="16" id="fsc-HH-zKa"/>
+                                            <constraint firstItem="tc0-X9-Qph" firstAttribute="top" secondItem="grG-D9-9je" secondAttribute="top" constant="8" id="ft6-dH-U1m"/>
+                                            <constraint firstAttribute="trailing" secondItem="JjB-v0-t5z" secondAttribute="trailing" constant="16" id="gZL-ks-zg0"/>
+                                            <constraint firstItem="pZS-fp-7hG" firstAttribute="top" secondItem="zPM-qp-Leu" secondAttribute="bottom" constant="7.5" id="gxI-wO-8hc"/>
+                                            <constraint firstItem="4WZ-5q-op4" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="kUq-OH-lWq"/>
+                                            <constraint firstItem="vy2-rs-AQK" firstAttribute="top" secondItem="tc0-X9-Qph" secondAttribute="bottom" constant="8" id="nYd-yo-hWy"/>
+                                            <constraint firstItem="tc0-X9-Qph" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="oZb-b7-UI9"/>
+                                            <constraint firstItem="vy2-rs-AQK" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="oj7-M4-csc"/>
+                                            <constraint firstItem="MfD-RR-mOT" firstAttribute="leading" secondItem="grG-D9-9je" secondAttribute="leading" constant="16" id="qo6-H5-cdT"/>
+                                            <constraint firstAttribute="trailing" secondItem="tc0-X9-Qph" secondAttribute="trailing" constant="16" id="we3-aJ-lDk"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="grG-D9-9je" secondAttribute="trailing" id="fX5-y5-COo"/>
+                                    <constraint firstAttribute="bottom" secondItem="grG-D9-9je" secondAttribute="bottom" id="hS4-7a-Gn3"/>
+                                    <constraint firstItem="grG-D9-9je" firstAttribute="width" secondItem="V4Q-A7-krf" secondAttribute="width" id="i0h-ad-M1t"/>
+                                    <constraint firstItem="grG-D9-9je" firstAttribute="leading" secondItem="V4Q-A7-krf" secondAttribute="leading" id="qov-7x-TlP"/>
+                                    <constraint firstItem="grG-D9-9je" firstAttribute="top" secondItem="V4Q-A7-krf" secondAttribute="top" id="vep-1w-TiC"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1843137255" green="0.23921568630000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="V4Q-A7-krf" secondAttribute="trailing" constant="-16" id="BtO-Cw-lVe"/>
+                            <constraint firstItem="Hpz-Zn-JaG" firstAttribute="top" secondItem="V4Q-A7-krf" secondAttribute="bottom" id="IFe-th-pUs"/>
+                            <constraint firstItem="V4Q-A7-krf" firstAttribute="top" secondItem="65B-BI-qvR" secondAttribute="bottom" constant="-64" id="baB-i2-mEr"/>
+                            <constraint firstItem="V4Q-A7-krf" firstAttribute="leading" secondItem="XAf-3D-Mo4" secondAttribute="leadingMargin" constant="-16" id="zGr-xV-7uW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Load GeoPackage" id="Odl-p7-PSd">
+                        <barButtonItem key="rightBarButtonItem" title="Load" id="P56-Fj-9YE">
+                            <color key="tintColor" red="0.49019607840000001" green="0.74509803919999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="tBb-kX-PwY" kind="show" identifier="loadGeoPackageSegue" id="QUx-yg-UCK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="contentHeight" destination="JQ2-nA-ERu" id="0wk-b5-pEK"/>
+                        <outlet property="contentView" destination="grG-D9-9je" id="5h1-mt-LX4"/>
+                        <outlet property="exampleTable" destination="dsi-H2-e4N" id="SSk-u5-onR"/>
+                        <outlet property="loadButton" destination="P56-Fj-9YE" id="tNa-MS-vEK"/>
+                        <outlet property="nameTextField" destination="4WZ-5q-op4" id="vwR-Bd-dGN"/>
+                        <outlet property="tableOrigin" destination="dWp-rO-rEL" id="7VN-2t-Hao"/>
+                        <outlet property="urlTextField" destination="pZS-fp-7hG" id="WwJ-Uv-iSU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RI1-nw-0Bi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1764" y="-235"/>
+        </scene>
+        <!--Load Geo Package View Controller-->
+        <scene sceneID="UNU-sq-9UY">
+            <objects>
+                <viewController id="tBb-kX-PwY" customClass="LoadGeoPackageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YaS-YX-bW1"/>
+                        <viewControllerLayoutGuide type="bottom" id="IhP-DF-K2r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gak-Bh-Wtt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIb-pj-Xt0">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GeoPackage Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bl-d9-Rb4">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BX5-w2-n4x">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yLo-NW-bag">
+                                <color key="progressTintColor" red="0.49019607900000001" green="0.74509805439999999" blue="0.8156862855" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-td-jgj">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.80784314869999996" green="0.9098039269" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7d-yY-yya">
+                                <state key="normal" title="Cancel Download">
+                                    <color key="titleColor" red="0.49019607900000001" green="0.74509805439999999" blue="0.8156862855" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="tBb-kX-PwY" eventType="touchUpInside" id="KDG-To-Xo0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18431372939999999" green="0.2392156869" blue="0.2941176593" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yLo-NW-bag" firstAttribute="centerX" secondItem="gak-Bh-Wtt" secondAttribute="centerX" id="0KU-qx-ZYW"/>
+                            <constraint firstItem="6bl-d9-Rb4" firstAttribute="top" secondItem="tIb-pj-Xt0" secondAttribute="bottom" constant="8" id="Igb-F8-wq7"/>
+                            <constraint firstItem="yLo-NW-bag" firstAttribute="centerY" secondItem="gak-Bh-Wtt" secondAttribute="centerY" id="OEz-qw-rR7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tP2-td-jgj" secondAttribute="trailing" id="P9a-YF-l5s"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="6bl-d9-Rb4" secondAttribute="leading" id="RBw-29-RN9"/>
+                            <constraint firstItem="V7d-yY-yya" firstAttribute="top" secondItem="tP2-td-jgj" secondAttribute="bottom" constant="98" id="WWx-oC-pxq"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="tIb-pj-Xt0" secondAttribute="leading" id="YyC-f2-D10"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yLo-NW-bag" secondAttribute="trailing" id="cut-TR-gIk"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="yLo-NW-bag" secondAttribute="leading" id="ePO-Wu-y2K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6bl-d9-Rb4" secondAttribute="trailing" id="k4S-EY-VUZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BX5-w2-n4x" secondAttribute="trailing" id="kad-21-9sd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tIb-pj-Xt0" secondAttribute="trailing" id="mpv-UB-0gI"/>
+                            <constraint firstItem="V7d-yY-yya" firstAttribute="centerX" secondItem="gak-Bh-Wtt" secondAttribute="centerX" id="oGi-hg-DC9"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="BX5-w2-n4x" secondAttribute="leading" id="pva-Pi-Rr8"/>
+                            <constraint firstItem="yLo-NW-bag" firstAttribute="top" secondItem="BX5-w2-n4x" secondAttribute="bottom" constant="8" id="s2N-ga-AsS"/>
+                            <constraint firstItem="BX5-w2-n4x" firstAttribute="top" secondItem="6bl-d9-Rb4" secondAttribute="bottom" constant="8.5" id="wXo-K3-REr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="tP2-td-jgj" secondAttribute="leading" id="wkN-cn-r33"/>
+                            <constraint firstItem="tP2-td-jgj" firstAttribute="top" secondItem="yLo-NW-bag" secondAttribute="bottom" constant="8" id="yl4-xL-ZGk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="downloadLabel" destination="tP2-td-jgj" id="02g-Ux-OFC"/>
+                        <outlet property="nameLabel" destination="6bl-d9-Rb4" id="fcQ-sB-THy"/>
+                        <outlet property="progressView" destination="yLo-NW-bag" id="pSc-yk-cfy"/>
+                        <outlet property="urlLabel" destination="BX5-w2-n4x" id="14w-xj-qGE"/>
+                        <segue destination="Lgl-th-9Vd" kind="unwind" identifier="unwindToManager" unwindAction="unwindToManager:" id="Xqk-7l-iru"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JyD-Iw-5VS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Lgl-th-9Vd" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2533.5999999999999" y="-235.23238380809596"/>
+        </scene>
+    </scenes>
+</document>

@@ -307,7 +307,7 @@
                 <viewControllerPlaceholder storyboardName="FeatureTable" id="pOp-Hc-nKt" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehb-dv-brD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="628" y="44"/>
+            <point key="canvasLocation" x="621" y="20"/>
         </scene>
         <!--TileTable-->
         <scene sceneID="Ec3-h2-Eou">
@@ -315,7 +315,7 @@
                 <viewControllerPlaceholder storyboardName="TileTable" id="imb-Ed-50Y" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2y-Sj-t42" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="205"/>
+            <point key="canvasLocation" x="602" y="169"/>
         </scene>
         <!--SrsTable-->
         <scene sceneID="UbV-gJ-t6V">
@@ -323,7 +323,7 @@
                 <viewControllerPlaceholder storyboardName="SrsTable" id="aZn-Hb-PpQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-tZ-T2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624" y="343"/>
+            <point key="canvasLocation" x="600" y="309"/>
         </scene>
     </scenes>
     <resources>

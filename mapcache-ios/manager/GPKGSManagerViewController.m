@@ -38,6 +38,7 @@
 #import "InfoTableViewController.h"
 #import "FeatureTableTableViewController.h"
 #import "TileTableTableViewController.h"
+#import "ScopeButtonShowingSearchBar.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -60,10 +61,14 @@ const char ConstantKey;
 @property (nonatomic, strong) NSMutableDictionary *databases;
 @property (nonatomic, strong) NSArray *databaseNames;
 @property (nonatomic, strong) NSMutableDictionary *tableCells;
+@property (nonatomic, strong) NSMutableDictionary *filteredTableCells;
 @property (nonatomic, strong) GPKGSDatabases *active;
 @property (nonatomic, strong) NSUserDefaults * settings;
 @property (nonatomic) BOOL retainModifiedForMap;
 @property (nonatomic, strong) UIDocumentInteractionController *shareDocumentController;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (strong, nonatomic) IBOutlet UIView *segmentedView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -88,7 +93,6 @@ const char ConstantKey;
                                              selector:@selector(updateAndReloadDataNotification:)
                                                  name:GPKGS_IMPORT_GEOPACKAGE_NOTIFICATION
                                                object:nil];
-    
     self.manager = [GPKGGeoPackageFactory getManager];
     self.active = [GPKGSDatabases getInstance];
     self.settings = [NSUserDefaults standardUserDefaults];
@@ -98,6 +102,22 @@ const char ConstantKey;
         [self.databases setObject:[[GPKGSDatabase alloc] initWithName:expandedDatabase andExpanded:true] forKey:expandedDatabase];
     }
     self.retainModifiedForMap = false;
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = YES;
+    self.searchController.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.barTintColor = [UIColor colorWithRed:47.0/255.0f green:61.0/255.0f blue:75.0/255.0f alpha:1.0];
+    [self.searchController.searchBar setTintColor:[UIColor colorWithRed:128.0/255.0f green:194.0/255.0f blue:212.0/255.0f alpha:1.0]];
+    self.definesPresentationContext = YES;
+    
+    [self.segmentedView insertSubview:self.searchController.searchBar atIndex:0];
+    self.tableView.tableHeaderView = self.segmentedView;
+    [self.searchController.searchBar setBackgroundImage:[[UIImage alloc]init]];
+    [self.tableView.tableHeaderView setBackgroundColor:[UIColor colorWithRed:47.0/255.0f green:61.0/255.0f blue:75.0/255.0f alpha:1.0]];
+    
     [self update];
 }
 
@@ -122,6 +142,38 @@ const char ConstantKey;
     if ([[notification name] isEqualToString:GPKGS_IMPORT_GEOPACKAGE_NOTIFICATION]){
         [self updateAndReloadData];
     }
+}
+
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchText = searchController.searchBar.text;
+    NSLog(@"Search text %@", searchText);
+}
+
+- (IBAction)searchFilterChanged:(id)sender {
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            // All
+            NSLog(@"All Selected");
+            break;
+        case 1:
+            // Inactive
+            NSLog(@"Inactive Selected");
+            break;
+        case 2:
+            // Active
+            NSLog(@"Active Selected");
+            break;
+        default:
+            break;
+    }
+}
+
+- (BOOL) searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    self.searchController.searchBar.showsScopeBar = YES;
+    [self.searchController.searchBar sizeToFit];
+    [self.searchController.searchBar setShowsCancelButton:NO animated:YES];
+    //self.tableView.tableHeaderView = self.searchController.searchBar;
+    return YES;
 }
 
 

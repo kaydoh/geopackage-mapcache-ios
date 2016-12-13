@@ -38,7 +38,6 @@
 #import "InfoTableViewController.h"
 #import "FeatureTableTableViewController.h"
 #import "TileTableTableViewController.h"
-#import "ScopeButtonShowingSearchBar.h"
 
 NSString * const GPKGS_MANAGER_SEG_DOWNLOAD_FILE = @"downloadFile";
 NSString * const GPKGS_MANAGER_SEG_DISPLAY_TEXT = @"displayText";
@@ -145,37 +144,48 @@ const char ConstantKey;
 }
 
 - (void) updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *searchText = searchController.searchBar.text;
-    NSLog(@"Search text %@", searchText);
+    [self updateAndReloadData];
 }
 
 - (IBAction)searchFilterChanged:(id)sender {
-    switch (self.segmentedControl.selectedSegmentIndex) {
-        case 0:
-            // All
-            NSLog(@"All Selected");
-            break;
-        case 1:
-            // Inactive
-            NSLog(@"Inactive Selected");
-            break;
-        case 2:
-            // Active
-            NSLog(@"Active Selected");
-            break;
-        default:
-            break;
-    }
+    [self updateAndReloadData];
 }
 
 - (BOOL) searchBarShouldEndEditing:(UISearchBar *)searchBar {
     self.searchController.searchBar.showsScopeBar = YES;
     [self.searchController.searchBar sizeToFit];
     [self.searchController.searchBar setShowsCancelButton:NO animated:YES];
-    //self.tableView.tableHeaderView = self.searchController.searchBar;
     return YES;
 }
 
+-(void) maybeAddTable: (GPKGSTable *) table toArray: (NSMutableArray *) array {
+    if (self.searchController.searchBar.text.length != 0) {
+        NSRange range = [table.name rangeOfString:self.searchController.searchBar.text options:NSCaseInsensitiveSearch];
+        if (range.location == NSNotFound) {
+            return;
+        }
+    }
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            // All
+            [array addObject:table];
+            break;
+        case 1:
+            // Inactive
+            if (!table.active) {
+                [array addObject:table];
+            }
+            break;
+        case 2:
+            // Active
+            if (table.active) {
+                [array addObject:table];
+            }
+            break;
+        default:
+            break;
+    }
+}
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     GPKGSDatabase * database = (GPKGSDatabase *) [self.databases valueForKey:[self.databaseNames objectAtIndex:section]];
@@ -213,7 +223,6 @@ const char ConstantKey;
 }
 
 - (void) headerButtonClick: (UIButton *) button {
-    
     [self performSegueWithIdentifier:@"showGeoPackageInfo" sender:button.geoPackage];
 }
 
@@ -254,10 +263,8 @@ const char ConstantKey;
                 [table setGeoPackage:geoPackage];
                 [tables addObject:table];
                 [theDatabase addFeature:table];
-                [dbCells addObject:table];
-                //if(theDatabase.expanded){
-                //    [self.tableCells addObject:table];
-                //}
+                [self maybeAddTable:table toArray:dbCells];
+                //[dbCells addObject:table];
             }
             
             for(NSString * tableName in [geoPackage getTileTables]){
@@ -270,10 +277,8 @@ const char ConstantKey;
                 
                 [tables addObject:table];
                 [theDatabase addTile:table];
-                [dbCells addObject:table];
-                //if(theDatabase.expanded){
-                //    [self.tableCells addObject:table];
-                //}
+                [self maybeAddTable:table toArray:dbCells];
+                //[dbCells addObject:table];
             }
             
             for(GPKGSFeatureOverlayTable * table in [self.active featureOverlays:database]){
@@ -283,10 +288,8 @@ const char ConstantKey;
                 
                 [tables addObject:table];
                 [theDatabase addFeatureOverlay:table];
-                [dbCells addObject: table];
-                //if(theDatabase.expanded){
-                //    [self.tableCells addObject:table];
-                //}
+                [self maybeAddTable:table toArray:dbCells];
+                //[dbCells addObject: table];
             }
             [self.tableCells setObject:dbCells forKey:database];
             
